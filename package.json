@@ -2,6 +2,7 @@
   "name": "xp-back-end",
   "version": "1.0.0",
   "scripts": {
+    "seed": "ts-node ./prisma/seed.ts",
     "postgres:start": "docker-compose up -d",
     "build": "tsc",
     "start": "node dist/server.js",

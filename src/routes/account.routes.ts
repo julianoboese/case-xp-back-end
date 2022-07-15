@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import AccountController from '../controllers/account.controller';
+import AuthMiddleware from '../middlewares/auth.middleware';
 
 class AccountRoutes {
   private _router: Router;
@@ -9,6 +10,7 @@ class AccountRoutes {
   }
 
   public routes(): Router {
+    this._router.use(AuthMiddleware.authenticate);
     this._router.get('/conta/:id', AccountController.getBalance);
     this._router.post('/conta/deposito', AccountController.deposit);
     this._router.post('/conta/saque', AccountController.withdraw);

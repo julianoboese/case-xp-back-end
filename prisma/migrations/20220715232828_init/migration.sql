@@ -25,7 +25,6 @@ CREATE TABLE "UserAsset" (
     "userId" INTEGER NOT NULL,
     "assetId" INTEGER NOT NULL,
     "quantity" INTEGER NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "UserAsset_pkey" PRIMARY KEY ("userId","assetId")
 );

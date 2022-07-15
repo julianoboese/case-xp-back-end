@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import accountRoutes from './account.routes';
+import assetsRoutes from './assets.routes';
 import loginRoutes from './login.routes';
 
 // post /login
@@ -15,6 +16,10 @@ import loginRoutes from './login.routes';
 // post /investimentos/comprar
 // post /investimentos/vender
 
-const routes: Router[] = [loginRoutes.routes(), accountRoutes.routes()];
+const routes: Router[] = [
+  loginRoutes.routes(),
+  accountRoutes.routes(),
+  assetsRoutes.routes(),
+];
 
 export default routes;

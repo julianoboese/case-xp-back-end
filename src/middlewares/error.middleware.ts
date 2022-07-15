@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import HttpError from '../utils/http.error';
 
-export default class ErrorsMiddleware {
+export default class ErrorMiddleware {
   public static handleError = (
     error: Error,
     _req: Request,

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import accountRoutes from './account.routes';
+import loginRoutes from './login.routes';
 
 // post /login
 // post /register
@@ -14,6 +15,6 @@ import accountRoutes from './account.routes';
 // post /investimentos/comprar
 // post /investimentos/vender
 
-const routes: Router[] = [accountRoutes.routes()];
+const routes: Router[] = [loginRoutes.routes(), accountRoutes.routes()];
 
 export default routes;

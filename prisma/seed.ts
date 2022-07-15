@@ -14,6 +14,7 @@ async function main() {
     assets: {
       create: [
         {
+          quantity: 200,
           asset: {
             create: {
               ticker: 'PRIO3',
@@ -22,6 +23,7 @@ async function main() {
           },
         },
         {
+          quantity: 100,
           asset: {
             create: {
               ticker: 'AMBP3',
@@ -42,6 +44,7 @@ async function main() {
       assets: {
         create: [
           {
+            quantity: 100,
             asset: {
               create: {
                 ticker: 'RENT3',
@@ -50,6 +53,7 @@ async function main() {
             },
           },
           {
+            quantity: 300,
             asset: {
               create: {
                 ticker: 'CASH3',

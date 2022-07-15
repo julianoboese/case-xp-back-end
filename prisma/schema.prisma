@@ -33,6 +33,7 @@ model UserAsset {
   user      User     @relation(fields: [userId], references: [id])
   assetId   Int
   asset     Asset    @relation(fields: [assetId], references: [id])
+  quantity  Int
   createdAt DateTime @default(now())
 
   @@id([userId, assetId])

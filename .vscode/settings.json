@@ -4,6 +4,7 @@
     "error",
     "account",
     "auth",
-    "login"
+    "login",
+    "assets"
   ]
 }

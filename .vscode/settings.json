@@ -3,6 +3,7 @@
     "db",
     "error",
     "account",
-    "auth"
+    "auth",
+    "login"
   ]
 }

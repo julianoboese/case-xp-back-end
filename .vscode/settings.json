@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "db",
-    "error"
+    "error",
+    "account"
   ]
 }

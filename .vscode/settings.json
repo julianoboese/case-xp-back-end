@@ -6,6 +6,7 @@
     "auth",
     "login",
     "assets",
-    "order"
+    "order",
+    "register"
   ]
 }

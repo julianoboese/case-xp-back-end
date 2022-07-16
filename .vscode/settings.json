@@ -5,6 +5,7 @@
     "account",
     "auth",
     "login",
-    "assets"
+    "assets",
+    "order"
   ]
 }

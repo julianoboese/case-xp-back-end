@@ -1,18 +1,27 @@
 import { Router } from 'express';
+import { ObjectSchema } from 'joi';
 import OrderController from '../controllers/order.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
+import ValidationMiddleware from '../middlewares/validation.middleware';
+import orderValidator from '../validators/order.validator';
 
 class AccountRoutes {
   private _router: Router;
 
+  private _validator: ObjectSchema;
+
   constructor() {
     this._router = Router();
+    this._validator = orderValidator;
   }
 
   public routes(): Router {
     this._router.use(AuthMiddleware.authenticate);
-    this._router.post('/investimentos/comprar', OrderController.buyAsset);
-    this._router.post('/investimentos/vender', OrderController.sellAsset);
+
+    const orderValidation = new ValidationMiddleware(this._validator);
+
+    this._router.post('/investimentos/comprar', orderValidation.validate, OrderController.buyAsset);
+    this._router.post('/investimentos/vender', orderValidation.validate, OrderController.sellAsset);
 
     return this._router;
   }

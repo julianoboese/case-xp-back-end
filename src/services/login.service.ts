@@ -15,7 +15,7 @@ export default class LoginService {
 
     if (loginData.password !== user.password) throw new HttpError(401, 'Senha incorreta.');
 
-    const token = Jwt.generateToken(user);
+    const token = Jwt.generateToken({ id: user.id, email: user.email });
 
     return token;
   };

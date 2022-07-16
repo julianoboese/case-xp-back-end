@@ -15,6 +15,7 @@ export default class RegisterService {
 
     const createdUser = await prisma.user.create({
       data: newUser,
+      select: { id: true, email: true },
     });
 
     const token = Jwt.generateToken(createdUser);

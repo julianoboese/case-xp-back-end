@@ -6,7 +6,9 @@
     "postgres:start": "docker-compose up -d",
     "lint": "eslint .",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "postinstall": "npx prisma generate",
+    "prestart": "npx prisma migrate deploy",
+    "start": "node dist/src/server.js",
     "dev": "nodemon --watch \"./src/**\" --ext \"ts,js\" --exec \"ts-node src/server.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

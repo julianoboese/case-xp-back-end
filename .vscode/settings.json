@@ -8,6 +8,7 @@
     "assets",
     "order",
     "register",
-    "valid"
+    "valid",
+    "user"
   ]
 }

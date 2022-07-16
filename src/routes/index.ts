@@ -4,15 +4,18 @@ import assetsRoutes from './assets.routes';
 import loginRoutes from './login.routes';
 import orderRoutes from './order.routes';
 import registerRoutes from './register.routes';
+import userRoutes from './user.routes';
 
 // post /login
 // post /register
 
-// get /conta/{userId}
+// get /user
+
+// get /conta/
 // post /conta/deposito
 // post /conta/saque
 
-// get /ativos/{userId}
+// get /ativos/
 // get /ativos/{assetId}
 
 // post /investimentos/comprar
@@ -21,6 +24,7 @@ import registerRoutes from './register.routes';
 const routes: Router[] = [
   loginRoutes.routes(),
   registerRoutes.routes(),
+  userRoutes.routes(),
   accountRoutes.routes(),
   assetsRoutes.routes(),
   orderRoutes.routes(),

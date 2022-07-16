@@ -3,6 +3,7 @@ import accountRoutes from './account.routes';
 import assetsRoutes from './assets.routes';
 import loginRoutes from './login.routes';
 import orderRoutes from './order.routes';
+import registerRoutes from './register.routes';
 
 // post /login
 // post /register
@@ -19,6 +20,7 @@ import orderRoutes from './order.routes';
 
 const routes: Router[] = [
   loginRoutes.routes(),
+  registerRoutes.routes(),
   accountRoutes.routes(),
   assetsRoutes.routes(),
   orderRoutes.routes(),

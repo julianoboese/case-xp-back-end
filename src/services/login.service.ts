@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import ILogin from '../interfaces/login.interface';
 import prisma from '../prisma';
 import HttpError from '../utils/http.error';
@@ -13,7 +14,8 @@ export default class LoginService {
 
     if (!user) throw new HttpError(400, 'Usuário não encontrado.');
 
-    if (loginData.password !== user.password) throw new HttpError(401, 'Senha incorreta.');
+    const match = await bcrypt.compare(loginData.password, user.password);
+    if (!match) throw new HttpError(401, 'Senha incorreta.');
 
     const token = Jwt.generateToken({ id: user.id, email: user.email });
 

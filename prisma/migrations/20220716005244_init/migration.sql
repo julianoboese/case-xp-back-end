@@ -16,6 +16,7 @@ CREATE TABLE "Asset" (
     "id" SERIAL NOT NULL,
     "ticker" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "quantity" INTEGER NOT NULL DEFAULT 1000000000,
 
     CONSTRAINT "Asset_pkey" PRIMARY KEY ("id")
 );

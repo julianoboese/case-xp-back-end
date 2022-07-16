@@ -22,18 +22,19 @@ model User {
 }
 
 model Asset {
-  id     Int         @id @default(autoincrement())
-  ticker String      @unique
-  name   String
-  users  UserAsset[]
+  id       Int         @id @default(autoincrement())
+  ticker   String      @unique
+  name     String
+  quantity Int         @default(1000000000)
+  users    UserAsset[]
 }
 
 model UserAsset {
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  assetId   Int
-  asset     Asset    @relation(fields: [assetId], references: [id])
-  quantity  Int
+  userId   Int
+  user     User  @relation(fields: [userId], references: [id])
+  assetId  Int
+  asset    Asset @relation(fields: [assetId], references: [id])
+  quantity Int
 
   @@id([userId, assetId])
 }

@@ -9,7 +9,8 @@ export default class AssetsService {
     const b3ApiUrl = `https://api.hgbrasil.com/finance/stock_price?key=${B3_API_KEY}&symbol=${ticker}`;
     const assetData = await (await fetch(b3ApiUrl)).json();
 
-    return assetData.results[ticker].price;
+    const { price, change_percent: change } = assetData.results[ticker];
+    return { price, change };
   };
 
   public static getAssets = async (userId: number): Promise<IUserAsset[]> => {
@@ -21,9 +22,9 @@ export default class AssetsService {
     const userAssetsWithPrice = await Promise.all(userAssets.map(async (userAsset) => {
       const { assetId, quantity, asset } = userAsset;
       const { ticker } = asset;
-      const price = await AssetsService.fetchAssetPrice(ticker);
+      const { price, change } = await AssetsService.fetchAssetPrice(ticker);
 
-      return { userId, assetId, quantity, price };
+      return { userId, assetId, quantity, price, change };
     }));
 
     return userAssetsWithPrice;
@@ -40,8 +41,8 @@ export default class AssetsService {
     const { quantity, asset } = userAsset;
     const { ticker } = asset;
 
-    const price = await AssetsService.fetchAssetPrice(ticker);
+    const { price, change } = await AssetsService.fetchAssetPrice(ticker);
 
-    return { userId, assetId, quantity, price };
+    return { userId, assetId, quantity, price, change };
   };
 }

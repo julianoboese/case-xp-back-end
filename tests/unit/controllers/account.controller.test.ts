@@ -1,5 +1,5 @@
-import AccountService from '../../src/services/account.service';
-import AccountController from '../../src/controllers/account.controller';
+import AccountService from '../../../src/services/account.service';
+import AccountController from '../../../src/controllers/account.controller';
 import { Request, Response } from 'express';
 import { Decimal } from '@prisma/client/runtime';
 

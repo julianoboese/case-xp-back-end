@@ -1,5 +1,5 @@
-import { prismaMock } from "../prisma.mock";
-import AccountService from '../../src/services/account.service';
+import { prismaMock } from "../../prisma.mock";
+import AccountService from '../../../src/services/account.service';
 import { Decimal } from '@prisma/client/runtime';
 import { User } from "@prisma/client";
 

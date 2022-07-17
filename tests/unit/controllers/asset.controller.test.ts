@@ -1,5 +1,5 @@
-import AssetService from '../../src/services/asset.service';
-import AssetController from '../../src/controllers/asset.controller';
+import AssetService from '../../../src/services/asset.service';
+import AssetController from '../../../src/controllers/asset.controller';
 import { Request, Response } from 'express';
 import { Decimal } from '@prisma/client/runtime';
 

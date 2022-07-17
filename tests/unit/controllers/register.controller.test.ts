@@ -1,5 +1,5 @@
-import RegisterService from '../../src/services/register.service';
-import RegisterController from '../../src/controllers/register.controller';
+import RegisterService from '../../../src/services/register.service';
+import RegisterController from '../../../src/controllers/register.controller';
 import { Request, Response } from 'express';
 
 describe('The registerController register function', () => {

@@ -1,5 +1,5 @@
-import UserService from '../../src/services/user.service';
-import UserController from '../../src/controllers/user.controller';
+import UserService from '../../../src/services/user.service';
+import UserController from '../../../src/controllers/user.controller';
 import { Request, Response } from 'express';
 
 describe('The UserController getUser function', () => {

@@ -1,5 +1,5 @@
-import LoginService from '../../src/services/login.service';
-import LoginController from '../../src/controllers/login.controller';
+import LoginService from '../../../src/services/login.service';
+import LoginController from '../../../src/controllers/login.controller';
 import { Request, Response } from 'express';
 
 describe('The LoginController login function', () => {

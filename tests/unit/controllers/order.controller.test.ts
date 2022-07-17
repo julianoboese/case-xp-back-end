@@ -1,5 +1,5 @@
-import OrderService from '../../src/services/order.service';
-import OrderController from '../../src/controllers/order.controller';
+import OrderService from '../../../src/services/order.service';
+import OrderController from '../../../src/controllers/order.controller';
 import { Request, Response } from 'express';
 
 describe('The OrderController buyAsset function', () => {

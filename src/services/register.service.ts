@@ -9,6 +9,7 @@ export default class RegisterService {
     const { firstName, lastName, email, password } = newUser;
     const user = await prisma.user.findUnique({
       where: { email },
+      select: { id: true, email: true },
     });
 
     if (user) throw new HttpError(409, 'Usuário já possui conta.');

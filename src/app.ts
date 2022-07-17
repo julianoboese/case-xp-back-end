@@ -1,20 +1,40 @@
-import express from 'express';
+import express, { Application } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import 'express-async-errors';
+import swaggerUi from 'swagger-ui-express';
+import swaggerConfig from '../swagger.json';
 import ErrorMiddleware from './middlewares/error.middleware';
 import routes from './routes';
 
-dotenv.config();
+class App {
+  public server: Application;
 
-const app = express();
+  constructor() {
+    this.server = express();
+    this.config();
+    this.routes();
+    this.docs();
+    this.handleErrors();
+  }
 
-app.use(cors());
+  private config(): void {
+    dotenv.config();
+    this.server.use(cors());
+    this.server.use(express.json());
+  }
 
-app.use(express.json());
+  private routes(): void {
+    this.server.use(routes);
+  }
 
-app.use(routes);
+  private docs(): void {
+    this.server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+  }
 
-app.use(ErrorMiddleware.handleError);
+  private handleErrors(): void {
+    this.server.use(ErrorMiddleware.handleError);
+  }
+}
 
-export default app;
+export default new App();

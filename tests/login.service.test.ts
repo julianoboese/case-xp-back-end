@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import LoginService from '../src/services/login.service';
 import Jwt from "../src/utils/jwt";
 import { Decimal } from '@prisma/client/runtime';
+import { User } from "@prisma/client";
 
 describe('The LoginService login function', () => {
 
@@ -18,15 +19,11 @@ describe('The LoginService login function', () => {
   it('should throw an error if password is incorrect', async () => {
     const userMock = {
       id: 1,
-      firstName: 'Jon',
-      lastName: 'Doe',
       email: 'jon.doe@email.com',
       password: '12345678',
-      balance: 1000.00 as unknown as Decimal,
-      createdAt: new Date(),
     };
 
-    prismaMock.user.findUnique.mockResolvedValue(userMock);
+    prismaMock.user.findUnique.mockResolvedValue(userMock as User);
 
     jest.spyOn(bcrypt, 'compare').mockImplementation(() => Promise.resolve(false));
 
@@ -37,15 +34,11 @@ describe('The LoginService login function', () => {
   it('should return a token if login data is correct', async () => {
     const userMock = {
       id: 1,
-      firstName: 'Jon',
-      lastName: 'Doe',
       email: 'jon.doe@email.com',
       password: '12345678',
-      balance: 1000.00 as unknown as Decimal,
-      createdAt: new Date(),
     };
 
-    prismaMock.user.findUnique.mockResolvedValue(userMock);
+    prismaMock.user.findUnique.mockResolvedValue(userMock as User);
     jest.spyOn(bcrypt, 'compare').mockImplementation(() => Promise.resolve(true));
     jest.spyOn(Jwt, 'generateToken').mockReturnValue('q1w2e3r4t5');
 

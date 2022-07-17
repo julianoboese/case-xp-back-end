@@ -7,9 +7,8 @@ import Jwt from '../utils/jwt';
 export default class LoginService {
   public static login = async (loginData: ILogin): Promise<string> => {
     const user = await prisma.user.findUnique({
-      where: {
-        email: loginData.email,
-      },
+      where: { email: loginData.email },
+      select: { id: true, email: true, password: true },
     });
 
     if (!user) throw new HttpError(400, 'Usuário não encontrado.');

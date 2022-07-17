@@ -17,7 +17,11 @@ class LoginRoutes {
   public routes(): Router {
     const loginValidation = new ValidationMiddleware(this._validator);
 
-    this._router.post('/login', loginValidation.validate, LoginController.login);
+    this._router.post(
+      '/login',
+      loginValidation.validate,
+      LoginController.login,
+    );
 
     return this._router;
   }

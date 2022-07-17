@@ -10,8 +10,11 @@ class UserRoutes {
   }
 
   public routes(): Router {
-    this._router.use(AuthMiddleware.authenticate);
-    this._router.get('/user', UserController.getUser);
+    this._router.get(
+      '/user',
+      AuthMiddleware.authenticate,
+      UserController.getUser,
+    );
 
     return this._router;
   }

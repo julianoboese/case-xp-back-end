@@ -16,12 +16,21 @@ class AccountRoutes {
   }
 
   public routes(): Router {
-    this._router.use(AuthMiddleware.authenticate);
-
     const orderValidation = new ValidationMiddleware(this._validator);
 
-    this._router.post('/investimentos/comprar', orderValidation.validate, OrderController.buyAsset);
-    this._router.post('/investimentos/vender', orderValidation.validate, OrderController.sellAsset);
+    this._router.post(
+      '/investimentos/comprar',
+      AuthMiddleware.authenticate,
+      orderValidation.validate,
+      OrderController.buyAsset,
+    );
+
+    this._router.post(
+      '/investimentos/vender',
+      AuthMiddleware.authenticate,
+      orderValidation.validate,
+      OrderController.sellAsset,
+    );
 
     return this._router;
   }

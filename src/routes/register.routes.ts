@@ -17,7 +17,11 @@ class RegisterRoutes {
   public routes(): Router {
     const registerValidation = new ValidationMiddleware(this._validator);
 
-    this._router.post('/register', registerValidation.validate, RegisterController.register);
+    this._router.post(
+      '/register',
+      registerValidation.validate,
+      RegisterController.register,
+    );
 
     return this._router;
   }

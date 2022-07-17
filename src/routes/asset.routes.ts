@@ -10,9 +10,17 @@ class AssetRoutes {
   }
 
   public routes(): Router {
-    this._router.use(AuthMiddleware.authenticate);
-    this._router.get('/ativos', AssetController.getAssets);
-    this._router.get('/ativos/:id', AssetController.getAsset);
+    this._router.get(
+      '/ativos',
+      AuthMiddleware.authenticate,
+      AssetController.getAssets,
+    );
+
+    this._router.get(
+      '/ativos/:id',
+      AuthMiddleware.authenticate,
+      AssetController.getAsset,
+    );
 
     return this._router;
   }

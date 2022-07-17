@@ -16,13 +16,27 @@ class AccountRoutes {
   }
 
   public routes(): Router {
-    this._router.use(AuthMiddleware.authenticate);
-    this._router.get('/conta', AccountController.getBalance);
-
     const accountValidation = new ValidationMiddleware(this._validator);
 
-    this._router.post('/conta/deposito', accountValidation.validate, AccountController.deposit);
-    this._router.post('/conta/saque', accountValidation.validate, AccountController.withdraw);
+    this._router.get(
+      '/conta',
+      AuthMiddleware.authenticate,
+      AccountController.getBalance,
+    );
+
+    this._router.post(
+      '/conta/deposito',
+      AuthMiddleware.authenticate,
+      accountValidation.validate,
+      AccountController.deposit,
+    );
+
+    this._router.post(
+      '/conta/saque',
+      AuthMiddleware.authenticate,
+      accountValidation.validate,
+      AccountController.withdraw,
+    );
 
     return this._router;
   }

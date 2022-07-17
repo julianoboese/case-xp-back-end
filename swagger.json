@@ -1,0 +1,8 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Case XP",
+    "description": "API para o desafio do processo seletivo da XP Inc.",
+    "version": "1.0.0"
+  }
+}

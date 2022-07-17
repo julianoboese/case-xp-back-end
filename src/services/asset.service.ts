@@ -3,7 +3,7 @@ import IUserAsset from '../interfaces/asset.interface';
 import prisma from '../prisma';
 import HttpError from '../utils/http.error';
 
-export default class AssetsService {
+export default class AssetService {
   private static fetchAssetPrice = async (ticker: string) => {
     const { B3_API_KEY } = process.env;
     const b3ApiUrl = `https://api.hgbrasil.com/finance/stock_price?key=${B3_API_KEY}&symbol=${ticker}`;
@@ -24,7 +24,7 @@ export default class AssetsService {
     const userAssetsWithPrice = await Promise.all(userAssets.map(async (userAsset) => {
       const { assetId, quantity, asset } = userAsset;
       const { ticker } = asset;
-      const { price, change } = await AssetsService.mockFetchAssetPrice();
+      const { price, change } = await AssetService.mockFetchAssetPrice();
 
       return { userId, assetId, ticker, quantity, price, change };
     }));
@@ -43,7 +43,7 @@ export default class AssetsService {
     const { quantity, asset } = userAsset;
     const { ticker } = asset;
 
-    const { price, change } = await AssetsService.mockFetchAssetPrice();
+    const { price, change } = await AssetService.mockFetchAssetPrice();
 
     return { userId, assetId, ticker, quantity, price, change };
   };

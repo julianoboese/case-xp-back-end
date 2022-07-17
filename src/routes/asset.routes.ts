@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import AssetsController from '../controllers/assets.controller';
+import AssetController from '../controllers/asset.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
 
-class AssetsRoutes {
+class AssetRoutes {
   private _router: Router;
 
   constructor() {
@@ -11,11 +11,11 @@ class AssetsRoutes {
 
   public routes(): Router {
     this._router.use(AuthMiddleware.authenticate);
-    this._router.get('/ativos', AssetsController.getAssets);
-    this._router.get('/ativos/:id', AssetsController.getAsset);
+    this._router.get('/ativos', AssetController.getAssets);
+    this._router.get('/ativos/:id', AssetController.getAsset);
 
     return this._router;
   }
 }
 
-export default new AssetsRoutes();
+export default new AssetRoutes();

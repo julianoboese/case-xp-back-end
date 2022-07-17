@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import accountRoutes from './account.routes';
-import assetsRoutes from './assets.routes';
+import assetRoutes from './asset.routes';
 import loginRoutes from './login.routes';
 import orderRoutes from './order.routes';
 import registerRoutes from './register.routes';
@@ -26,7 +26,7 @@ const routes: Router[] = [
   registerRoutes.routes(),
   userRoutes.routes(),
   accountRoutes.routes(),
-  assetsRoutes.routes(),
+  assetRoutes.routes(),
   orderRoutes.routes(),
 ];
 

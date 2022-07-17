@@ -4,7 +4,7 @@ import LoginService from '../src/services/login.service';
 import Jwt from "../src/utils/jwt";
 import { Decimal } from '@prisma/client/runtime';
 
-describe('The POST /login route', () => {
+describe('The LoginService login function', () => {
 
   afterEach(() => jest.clearAllMocks());
 

@@ -13,6 +13,8 @@ export default class AssetsService {
     return { price, change };
   };
 
+  private static mockFetchAssetPrice = async () => ({ price: 25.6, change: -5.65 });
+
   public static getAssets = async (userId: number): Promise<IUserAsset[]> => {
     const userAssets = await prisma.userAsset.findMany({
       where: { userId },
@@ -22,7 +24,7 @@ export default class AssetsService {
     const userAssetsWithPrice = await Promise.all(userAssets.map(async (userAsset) => {
       const { assetId, quantity, asset } = userAsset;
       const { ticker } = asset;
-      const { price, change } = await AssetsService.fetchAssetPrice(ticker);
+      const { price, change } = await AssetsService.mockFetchAssetPrice();
 
       return { userId, assetId, ticker, quantity, price, change };
     }));
@@ -41,7 +43,7 @@ export default class AssetsService {
     const { quantity, asset } = userAsset;
     const { ticker } = asset;
 
-    const { price, change } = await AssetsService.fetchAssetPrice(ticker);
+    const { price, change } = await AssetsService.mockFetchAssetPrice();
 
     return { userId, assetId, ticker, quantity, price, change };
   };

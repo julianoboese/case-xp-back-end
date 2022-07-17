@@ -24,7 +24,7 @@ export default class AssetsService {
       const { ticker } = asset;
       const { price, change } = await AssetsService.fetchAssetPrice(ticker);
 
-      return { userId, assetId, quantity, price, change };
+      return { userId, assetId, ticker, quantity, price, change };
     }));
 
     return userAssetsWithPrice;
@@ -43,6 +43,6 @@ export default class AssetsService {
 
     const { price, change } = await AssetsService.fetchAssetPrice(ticker);
 
-    return { userId, assetId, quantity, price, change };
+    return { userId, assetId, ticker, quantity, price, change };
   };
 }

@@ -1,5 +1,5 @@
-import { prismaMock } from "./prisma.mock";
-import AssetService from '../src/services/asset.service';
+import { prismaMock } from ".././prisma.mock";
+import AssetService from '../../src/services/asset.service';
 
 describe('The AssetService getAssets function', () => {
 

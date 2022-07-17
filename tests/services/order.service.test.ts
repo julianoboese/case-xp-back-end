@@ -1,5 +1,5 @@
-import { prismaMock } from "./prisma.mock";
-import OrderService from '../src/services/order.service';
+import { prismaMock } from ".././prisma.mock";
+import OrderService from '../../src/services/order.service';
 
 describe('The OrderService buyAsset function', () => {
 

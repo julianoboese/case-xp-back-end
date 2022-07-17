@@ -1,7 +1,7 @@
-import { prismaMock } from "./prisma.mock";
+import { prismaMock } from "../prisma.mock";
 import bcrypt from 'bcrypt';
-import RegisterService from '../src/services/register.service';
-import Jwt from "../src/utils/jwt";
+import RegisterService from '../../src/services/register.service';
+import Jwt from "../../src/utils/jwt";
 import { User } from "@prisma/client";
 
 describe('The RegisterService register function', () => {

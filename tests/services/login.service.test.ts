@@ -1,8 +1,7 @@
-import { prismaMock } from "./prisma.mock";
+import { prismaMock } from ".././prisma.mock";
 import bcrypt from 'bcrypt';
-import LoginService from '../src/services/login.service';
-import Jwt from "../src/utils/jwt";
-import { Decimal } from '@prisma/client/runtime';
+import LoginService from '../../src/services/login.service';
+import Jwt from "../../src/utils/jwt";
 import { User } from "@prisma/client";
 
 describe('The LoginService login function', () => {

@@ -3,8 +3,12 @@ import UserService from '../services/user.service';
 
 export default class UserController {
   public static getUser = async (_req: Request, res: Response): Promise<void> => {
-    const user = await UserService.getUser(res.locals.user.id);
+    try {
+      const user = await UserService.getUser(res.locals.user.id);
 
-    res.status(200).json(user);
+      res.status(200).json(user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 }

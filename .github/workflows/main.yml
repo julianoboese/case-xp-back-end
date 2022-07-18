@@ -4,6 +4,22 @@ jobs:
   Lint_and_Test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/case-xp-back-end
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -15,4 +31,7 @@ jobs:
         run: npm run lint
 
       - name: Running unit tests
-        run: npm test
+        run: npm run test:unit
+
+      - name: Running integration tests
+        run: npm run test:integration

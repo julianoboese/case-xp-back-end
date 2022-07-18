@@ -9,9 +9,9 @@ async function main() {
   await prisma.asset.deleteMany({});
 
   await prisma.user.create({ data: {
-    firstName: 'Juliano',
+    firstName: 'Felipe',
     lastName: 'Silva',
-    email: 'julianosilva@hey.com',
+    email: 'felipe.silva@email.com',
     password: await bcrypt.hash('12345678', 5),
     assets: {
       create: [
@@ -41,7 +41,7 @@ async function main() {
     data: {
       firstName: 'Maria',
       lastName: 'Souza',
-      email: 'mariasouza@hey.com',
+      email: 'maria.souza@email.com',
       password: await bcrypt.hash('12345678', 5),
       assets: {
         create: [

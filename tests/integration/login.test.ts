@@ -68,7 +68,7 @@ describe('The POST /login route', () => {
 
   it('returns a token if user data is correct', async () => {
     const result = await request(server).post('/login').send({
-      email: 'julianosilva@hey.com',
+      email: 'felipe.silva@email.com',
       password: '12345678',
     });
 

@@ -1,11 +1,12 @@
 import bcrypt from 'bcrypt';
 import IRegister from '../interfaces/register.interface';
+import IToken from '../interfaces/token.interface';
 import prisma from '../prisma';
 import HttpError from '../utils/http.error';
 import Jwt from '../utils/jwt';
 
 export default class RegisterService {
-  public static register = async (newUser: IRegister): Promise<string> => {
+  public static register = async (newUser: IRegister): Promise<IToken> => {
     const { firstName, lastName, email, password } = newUser;
     const user = await prisma.user.findUnique({
       where: { email },
@@ -22,6 +23,6 @@ export default class RegisterService {
 
     const token = Jwt.generateToken(createdUser);
 
-    return token;
+    return { token };
   };
 }

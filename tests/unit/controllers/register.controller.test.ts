@@ -18,7 +18,7 @@ describe('The registerController register function', () => {
   }
   
   beforeEach(() => {
-    jest.spyOn(RegisterService, 'register').mockResolvedValue('q1w2e3r4t5');
+    jest.spyOn(RegisterService, 'register').mockResolvedValue({ token: 'q1w2e3r4t5' });
     responseMock.status.mockReturnValue(responseMock);
   })
 

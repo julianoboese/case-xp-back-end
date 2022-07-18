@@ -42,6 +42,6 @@ describe('The RegisterService register function', () => {
 
     const token = await RegisterService.register(registerData);
 
-    expect(token).toEqual('q1w2e3r4t5');
+    expect(token).toEqual({ token: 'q1w2e3r4t5' });
   });
 });

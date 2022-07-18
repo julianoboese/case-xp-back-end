@@ -4,5 +4,436 @@
     "title": "Case XP",
     "description": "API para o desafio do processo seletivo da XP Inc.",
     "version": "1.0.0"
+  },
+  "servers":[
+    {
+      "url": "https://case-xp-back-end.herokuapp.com"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "register": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "token": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "account": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "order": {
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "type": "number"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "login",
+      "description": "Operations related to login"
+    },
+    {
+      "name": "register",
+      "description": "Operations related to register"
+    },
+    {
+      "name": "user",
+      "description": "Operations related to user"
+    },
+    {
+      "name": "account",
+      "description": "Operations related to account"
+    },
+    {
+      "name": "asset",
+      "description": "Operations related to asset"
+    },
+    {
+      "name": "order",
+      "description": "Operations related to order"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "User login",
+        "description": "Authenticate user data with JWT",
+        "tags": ["login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/token"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Dados inseridos incorretamente."
+          },
+          "401": {
+            "description": "Authorization. Senha incorreta."
+          },
+          "404": {
+            "description": "Not Found. Usuário não cadastrado."
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "summary": "User register",
+        "description": "Create user and return JWT",
+        "tags": ["register"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/register"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/token"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Dados inseridos incorretamente."
+          },
+          "409": {
+            "description": "Conflict. Usuário já possui conta."
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Get user name",
+        "description": "Get user first name and last name",
+        "tags": ["user"],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/account": {
+      "get": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Get account balance",
+        "description": "Get current user account balance",
+        "tags": ["account"],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/account/deposit": {
+      "post": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Deposit money on account",
+        "description": "Deposit money on account",
+        "tags": ["account"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/account"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/account/withdraw": {
+      "post": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Withdraw money from account",
+        "description": "Withdraw money from account",
+        "tags": ["account"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/account"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/assets/all": {
+      "get": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Get all assets available",
+        "description": "Get all assets available on the broker",
+        "tags": ["asset"],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/assets": {
+      "get": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Get all user assets",
+        "description": "Get all assets owned by the user",
+        "tags": ["asset"],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/assets/{assetId}": {
+      "get": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Get single asset",
+        "description": "Get data from a single asset",
+        "tags": ["asset"],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/order/buy": {
+      "post": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Send order to buy asset",
+        "description": "Send order to buy asset",
+        "tags": ["order"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/order/sell": {
+      "post": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Send order to buy asset",
+        "description": "Send order to buy asset",
+        "tags": ["order"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
   }
 }

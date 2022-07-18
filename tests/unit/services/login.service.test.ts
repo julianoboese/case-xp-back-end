@@ -12,7 +12,7 @@ describe('The LoginService login function', () => {
     prismaMock.user.findUnique.mockResolvedValue(null);
 
     await expect(LoginService.login({email: 'jane.doe@email.com', password: '12345678'}))
-        .rejects.toThrow('Usuário não encontrado.');
+        .rejects.toThrow('Usuário não cadastrado.');
   });
 
   it('should throw an error if password is incorrect', async () => {

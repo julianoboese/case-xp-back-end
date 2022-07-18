@@ -5,6 +5,14 @@ import AssetInfo from '../utils/asset.info';
 import HttpError from '../utils/http.error';
 
 export default class AssetService {
+  public static getAllAssets = async (): Promise<Omit<Asset, 'quantity'>[]> => {
+    const assets = await prisma.asset.findMany({
+      select: { id: true, ticker: true, name: true },
+    });
+
+    return assets;
+  };
+
   public static getAssets = async (userId: number): Promise<IUserAsset[]> => {
     const userAssets = await prisma.userAsset.findMany({
       where: { userId },
@@ -61,13 +69,5 @@ export default class AssetService {
     const { price, change } = await AssetInfo.mockFetchAssetPrice();
 
     return { userId, assetId, ticker, quantity, price, change };
-  };
-
-  public static getAllAssets = async (): Promise<Omit<Asset, 'quantity'>[]> => {
-    const assets = await prisma.asset.findMany({
-      select: { id: true, ticker: true, name: true },
-    });
-
-    return assets;
   };
 }

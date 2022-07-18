@@ -11,7 +11,7 @@ export default class OrderService {
 
     if (!asset) throw new HttpError(404, 'Ativo indisponível na corretora.');
 
-    if (asset.quantity < amount) throw new HttpError(400, 'Quantidade indisponível na corretora.');
+    if (asset.quantity < amount) throw new HttpError(422, 'Quantidade indisponível na corretora.');
 
     const [position] = await prisma.$transaction([
       prisma.userAsset.upsert({ where: { userId_assetId: { userId, assetId } },
@@ -33,7 +33,7 @@ export default class OrderService {
 
     if (!userAsset) throw new HttpError(404, 'Ativo não consta na carteira.');
 
-    if (userAsset.quantity < amount) throw new HttpError(400, 'Quantidade insuficiente na carteira.');
+    if (userAsset.quantity < amount) throw new HttpError(422, 'Quantidade insuficiente na carteira.');
 
     const [position] = await prisma.$transaction([
       prisma.userAsset.update({ where: { userId_assetId: { userId, assetId } },

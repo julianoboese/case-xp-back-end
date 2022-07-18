@@ -29,7 +29,7 @@ export default class AccountService {
   public static withdraw = async (id: number, amount: number): Promise<IBalance> => {
     const currentBalance = await AccountService.getBalance(id);
     if (Number(currentBalance.balance) < amount) {
-      throw new HttpError(400, 'Saldo insuficiente.');
+      throw new HttpError(422, 'Saldo insuficiente.');
     }
 
     const newBalance = await prisma.user.update({

@@ -19,14 +19,14 @@ class AccountRoutes {
     const orderValidation = new ValidationMiddleware(this._validator);
 
     this._router.post(
-      '/investimentos/comprar',
+      '/order/buy',
       AuthMiddleware.authenticate,
       orderValidation.validate,
       OrderController.buyAsset,
     );
 
     this._router.post(
-      '/investimentos/vender',
+      '/order/sell',
       AuthMiddleware.authenticate,
       orderValidation.validate,
       OrderController.sellAsset,

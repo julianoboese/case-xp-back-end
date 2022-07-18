@@ -19,20 +19,20 @@ class AccountRoutes {
     const accountValidation = new ValidationMiddleware(this._validator);
 
     this._router.get(
-      '/conta',
+      '/account',
       AuthMiddleware.authenticate,
       AccountController.getBalance,
     );
 
     this._router.post(
-      '/conta/deposito',
+      '/account/deposit',
       AuthMiddleware.authenticate,
       accountValidation.validate,
       AccountController.deposit,
     );
 
     this._router.post(
-      '/conta/saque',
+      '/account/withdraw',
       AuthMiddleware.authenticate,
       accountValidation.validate,
       AccountController.withdraw,

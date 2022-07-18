@@ -11,19 +11,19 @@ class AssetRoutes {
 
   public routes(): Router {
     this._router.get(
-      '/ativos/all',
+      '/assets/all',
       AuthMiddleware.authenticate,
       AssetController.getAllAssets,
     );
 
     this._router.get(
-      '/ativos',
+      '/assets',
       AuthMiddleware.authenticate,
       AssetController.getAssets,
     );
 
     this._router.get(
-      '/ativos/:id',
+      '/assets/:id',
       AuthMiddleware.authenticate,
       AssetController.getAsset,
     );

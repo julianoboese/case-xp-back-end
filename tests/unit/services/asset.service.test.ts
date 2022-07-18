@@ -1,5 +1,41 @@
 import { prismaMock } from "../.././prisma.mock";
 import AssetService from '../../../src/services/asset.service';
+import AssetInfo from "../../../src/utils/asset.info";
+import { Asset } from "@prisma/client";
+
+describe('The AssetService getAllAssets function', () => {
+
+  afterEach(() => jest.clearAllMocks());
+
+  it('should return the user assets', async () => {
+    const assetsMock = [{
+      id: 1,
+      ticker: 'PRIO3',
+      name: 'Petrorio',
+    },
+    {
+      id: 1,
+      ticker: 'AMBP3',
+      name: 'Ambipar',
+    },
+    {
+      id: 3,
+      ticker: 'CASH3',
+      name: 'Méliuz',
+    },
+    {
+      id: 4,
+      ticker: 'RENT3',
+      name: 'Localiza',
+    }]
+
+    prismaMock.asset.findMany.mockResolvedValue(assetsMock as Asset[]);
+
+    const assets = await AssetService.getAllAssets();
+  
+    expect(assets).toEqual(assetsMock);
+  });
+});
 
 describe('The AssetService getAssets function', () => {
 
@@ -25,7 +61,7 @@ describe('The AssetService getAssets function', () => {
 
     prismaMock.userAsset.findMany.mockResolvedValue(assetsMock);
 
-    jest.spyOn(AssetService, <any>'mockFetchAssetPrice')
+    jest.spyOn(AssetInfo, <any>'mockFetchAssetPrice')
       .mockResolvedValueOnce({price: 20.57, change: -1.5})
       .mockResolvedValue({price: 5.6, change: 0.23})
 
@@ -56,14 +92,41 @@ describe('The AssetService getAsset function', () => {
 
   afterEach(() => jest.clearAllMocks());
 
-  it('should throw an error if the user doesn\'t own it', async () => {
+  it('should throw an error if the asset is unavailable at the broker', async () => {
     prismaMock.userAsset.findUnique.mockResolvedValue(null);
+    prismaMock.asset.findUnique.mockResolvedValue(null);
 
     await expect(AssetService.getAsset(1, 3))
-        .rejects.toThrow('Ativo não consta na carteira.');
+        .rejects.toThrow('Ativo indisponível na corretora.');
   });
 
-  it('should return the asset if the user owns it', async () => {
+  it('should return the asset if the user doesn\'t own it', async () => {
+    const assetMock = {
+      id: 3,
+      ticker: 'CASH3'
+    }
+
+    prismaMock.userAsset.findUnique.mockResolvedValue(null);
+    prismaMock.asset.findUnique.mockResolvedValue(assetMock as Asset);
+
+    jest.spyOn(AssetInfo, <any>'mockFetchAssetPrice')
+      .mockResolvedValue({price: 20.57, change: -1.5})
+
+    const expectedReturn = {
+      userId: 1,
+      assetId: 3,
+      ticker: 'CASH3',
+      quantity: 0,
+      price: 20.57,
+      change: -1.5,
+    }
+
+    const assets = await AssetService.getAsset(1, 3);
+  
+    expect(assets).toEqual(expectedReturn);
+  });
+
+  it('should return the user asset if he owns it', async () => {
     const assetMock = {
       userId: 1,
       assetId: 1,
@@ -75,7 +138,7 @@ describe('The AssetService getAsset function', () => {
 
     prismaMock.userAsset.findUnique.mockResolvedValue(assetMock);
 
-    jest.spyOn(AssetService, <any>'mockFetchAssetPrice')
+    jest.spyOn(AssetInfo, <any>'mockFetchAssetPrice')
       .mockResolvedValue({price: 20.57, change: -1.5})
 
     const expectedReturn = {

@@ -25,13 +25,14 @@ export default class AssetService {
     });
 
     const userAssetsWithInfo = await Promise.all(
-      userAssets.map(async (userAsset) => {
-        const { assetId, quantity, asset } = userAsset;
-        const { ticker } = asset;
-        const { price, change } = await AssetInfo.mockFetchAssetPrice();
+      userAssets.filter((userAsset) => userAsset.quantity > 0)
+        .map(async (userAsset) => {
+          const { assetId, quantity, asset } = userAsset;
+          const { ticker } = asset;
+          const { price, change } = await AssetInfo.mockFetchAssetPrice();
 
-        return { userId, assetId, ticker, quantity, price, change };
-      }),
+          return { userId, assetId, ticker, quantity, price, change };
+        }),
     );
 
     return userAssetsWithInfo;

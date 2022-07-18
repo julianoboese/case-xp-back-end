@@ -1,7 +1,60 @@
 import AssetService from '../../../src/services/asset.service';
 import AssetController from '../../../src/controllers/asset.controller';
 import { Request, Response } from 'express';
-import { Decimal } from '@prisma/client/runtime';
+
+describe('The AssetController getAllAssets function', () => {
+  
+  const requestMock = {};
+  const responseMock = {
+    locals: { user: { id: 1 } },
+    status: jest.fn(),
+    json: jest.fn(),
+  }
+
+  const assetsMock = [{
+    id: 1,
+    ticker: 'PRIO3',
+    name: 'Petrorio',
+  },
+  {
+    id: 1,
+    ticker: 'AMBP3',
+    name: 'Ambipar',
+  },
+  {
+    id: 3,
+    ticker: 'CASH3',
+    name: 'Méliuz',
+  },
+  {
+    id: 4,
+    ticker: 'RENT3',
+    name: 'Localiza',
+  }]
+  
+  beforeEach(() => {
+    jest.spyOn(AssetService, 'getAllAssets').mockResolvedValue(assetsMock);
+    responseMock.status.mockReturnValue(responseMock);
+  })
+
+  afterEach(() => jest.clearAllMocks());
+
+  it('should respond with status code 200', async () => {
+    await AssetController.getAllAssets(requestMock as Request, responseMock as unknown as Response)
+
+    expect(responseMock.status).toHaveBeenCalled();
+    expect(responseMock.status).toHaveBeenCalledTimes(1);
+    expect(responseMock.status).toHaveBeenCalledWith(200);
+  });
+
+  it('should respond with all assets in broker', async () => {
+    await AssetController.getAllAssets(requestMock as Request, responseMock as unknown as Response)
+
+    expect(responseMock.json).toHaveBeenCalled();
+    expect(responseMock.json).toHaveBeenCalledTimes(1);
+    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(assetsMock));
+  });
+});
 
 describe('The AssetController getAssets function', () => {
   

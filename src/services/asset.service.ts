@@ -24,10 +24,21 @@ export default class AssetService {
   public static getAsset = async (userId: number, assetId: number): Promise<IUserAsset | null> => {
     const userAsset = await prisma.userAsset.findUnique({
       where: { userId_assetId: { userId, assetId } },
-      select: { userId: true, assetId: true, quantity: true, asset: { select: { ticker: true } } },
+
+    // Caso a pessoa usuária não possua o ativo, ele é buscado na base da corretora
+    if (!userAsset) {
+      const asset = await prisma.asset.findUnique({
+        where: { id: assetId },
+        select: { id: true, ticker: true },
     });
 
-    if (!userAsset) throw new HttpError(404, 'Ativo não consta na carteira.');
+      if (!asset) throw new HttpError(404, 'Ativo indisponível na corretora.');
+
+      const { ticker } = asset;
+      const { price, change } = await AssetInfo.mockFetchAssetPrice();
+
+      return { userId, assetId, ticker, quantity: 0, price, change };
+    }
 
     const { quantity, asset } = userAsset;
     const { ticker } = asset;

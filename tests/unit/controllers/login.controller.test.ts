@@ -11,7 +11,7 @@ describe('The LoginController login function', () => {
   }
   
   beforeEach(() => {
-    jest.spyOn(LoginService, 'login').mockResolvedValue('q1w2e3r4t5');
+    jest.spyOn(LoginService, 'login').mockResolvedValue({ token: 'q1w2e3r4t5' });
     responseMock.status.mockReturnValue(responseMock);
   })
 

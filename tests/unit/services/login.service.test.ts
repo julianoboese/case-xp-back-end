@@ -43,7 +43,7 @@ describe('The LoginService login function', () => {
 
     const token = await LoginService.login({email:userMock.email, password: userMock.password});
 
-    expect(token).toEqual('q1w2e3r4t5');
+    expect(token).toEqual({ token: 'q1w2e3r4t5' });
   });
 });
 

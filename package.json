@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "seed": "ts-node ./prisma/seed.ts",
+    "db:reset": "npx prisma migrate reset --force && npm run seed",
     "postgres:start": "docker-compose up -d",
     "lint": "eslint .",
     "build": "tsc",

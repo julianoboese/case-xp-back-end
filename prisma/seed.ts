@@ -1,72 +1,12 @@
-import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
+import seedAssets from './seed.assets';
+import seedUsers from './seed.users';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.userAsset.deleteMany({});
-  await prisma.user.deleteMany({});
-  await prisma.asset.deleteMany({});
-
-  await prisma.user.create({ data: {
-    firstName: 'Felipe',
-    lastName: 'Silva',
-    email: 'felipe.silva@email.com',
-    password: await bcrypt.hash('12345678', 5),
-    assets: {
-      create: [
-        {
-          quantity: 200,
-          asset: {
-            create: {
-              ticker: 'PRIO3',
-              name: 'Petrorio',
-            },
-          },
-        },
-        {
-          quantity: 100,
-          asset: {
-            create: {
-              ticker: 'AMBP3',
-              name: 'Ambipar',
-            },
-          },
-        },
-      ],
-    },
-  } });
-
-  await prisma.user.create({
-    data: {
-      firstName: 'Maria',
-      lastName: 'Souza',
-      email: 'maria.souza@email.com',
-      password: await bcrypt.hash('12345678', 5),
-      assets: {
-        create: [
-          {
-            quantity: 100,
-            asset: {
-              create: {
-                ticker: 'RENT3',
-                name: 'Localiza',
-              },
-            },
-          },
-          {
-            quantity: 300,
-            asset: {
-              create: {
-                ticker: 'CASH3',
-                name: 'Méliuz',
-              },
-            },
-          },
-        ],
-      },
-    },
-  });
+  await seedAssets();
+  await seedUsers();
 }
 
 main()

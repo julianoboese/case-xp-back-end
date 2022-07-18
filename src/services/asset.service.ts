@@ -38,7 +38,7 @@ export default class AssetService {
     return userAssetsWithInfo;
   };
 
-  public static getAsset = async (userId: number, assetId: number): Promise<IUserAsset | null> => {
+  public static getAsset = async (userId: number, assetId: number): Promise<IUserAsset> => {
     const userAsset = await prisma.userAsset.findUnique({
       where: { userId_assetId: { userId, assetId } },
       select: {

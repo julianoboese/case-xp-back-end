@@ -6,8 +6,8 @@ import HttpError from '../utils/http.error';
 import Jwt from '../utils/jwt';
 
 export default class RegisterService {
-  public static register = async (newUser: IRegister): Promise<IToken> => {
-    const { firstName, lastName, email, password } = newUser;
+  public static register = async (registerData: IRegister): Promise<IToken> => {
+    const { firstName, lastName, email, password } = registerData;
     const user = await prisma.user.findUnique({
       where: { email },
       select: { id: true, email: true },

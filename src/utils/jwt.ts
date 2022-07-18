@@ -12,14 +12,13 @@ export default class Jwt {
 
   public static generateToken = (user: Pick<User, 'id' | 'email'>): string => sign(user, Jwt.TOKEN_SECRET, Jwt.jwtConfig);
 
-  public static authenticateToken = async (
-    token: string | undefined,
-  ): Promise<string | JwtPayload> => {
-    if (!token) {
+  public static authenticateToken = async (auth?: string): Promise<string | JwtPayload> => {
+    if (!auth) {
       throw new HttpError(401, 'Acesso não autorizado.');
     }
 
     try {
+      const [, token] = auth.split(' ');
       const validate = verify(token, Jwt.TOKEN_SECRET);
       return validate;
     } catch (_error) {

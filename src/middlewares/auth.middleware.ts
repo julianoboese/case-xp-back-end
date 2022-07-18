@@ -7,9 +7,9 @@ export default class AuthMiddleware {
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
-    const token = req.headers.authorization;
+    const auth = req.headers.authorization;
 
-    const user = await Jwt.authenticateToken(token);
+    const user = await Jwt.authenticateToken(auth);
 
     res.locals.user = user;
 

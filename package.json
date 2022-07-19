@@ -12,9 +12,11 @@
     "start": "node dist/src/server.js",
     "dev": "nodemon --watch \"./src/**\" --ext \"ts,js\" --exec \"ts-node src/server.ts\"",
     "test:unit": "jest --testPathPattern=tests/unit",
+    "test:unit:coverage": "jest --coverage --testPathPattern=tests/unit",
     "test:integration": "npx prisma migrate reset --force && npm run seed && jest --testPathPattern=tests/integration",
-    "test": "jest",
-    "test:coverage": "jest --coverage --verbose"
+    "test:integration:coverage": "npx prisma migrate reset --force && npm run seed && jest --coverage --testPathPattern=tests/integration",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:coverage": "npx prisma migrate reset --force && npm run seed && jest --coverage --testPathPattern=tests"
   },
   "keywords": [],
   "author": "",

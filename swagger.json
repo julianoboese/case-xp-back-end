@@ -152,6 +152,9 @@
           },
           "amount": {
             "type": "number"
+          },
+          "price": {
+            "type": "number"
           }
         }
       },

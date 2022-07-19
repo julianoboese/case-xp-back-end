@@ -2,11 +2,11 @@ import { Router } from 'express';
 import UserController from '../controllers/user.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
 
-class UserRoutes {
+export class UserRoutes {
   private _router: Router;
 
-  constructor() {
-    this._router = Router();
+  constructor(router: Router = Router()) {
+    this._router = router;
   }
 
   public routes(): Router {

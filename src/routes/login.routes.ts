@@ -4,13 +4,13 @@ import LoginController from '../controllers/login.controller';
 import ValidationMiddleware from '../middlewares/validation.middleware';
 import loginValidator from '../validators/login.validator';
 
-class LoginRoutes {
+export class LoginRoutes {
   private _router: Router;
 
   private _validator: ObjectSchema;
 
-  constructor() {
-    this._router = Router();
+  constructor(router: Router = Router()) {
+    this._router = router;
     this._validator = loginValidator;
   }
 

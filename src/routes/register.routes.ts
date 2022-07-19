@@ -4,13 +4,13 @@ import RegisterController from '../controllers/register.controller';
 import ValidationMiddleware from '../middlewares/validation.middleware';
 import registerValidator from '../validators/register.validator';
 
-class RegisterRoutes {
+export class RegisterRoutes {
   private _router: Router;
 
   private _validator: ObjectSchema;
 
-  constructor() {
-    this._router = Router();
+  constructor(router: Router = Router()) {
+    this._router = router;
     this._validator = registerValidator;
   }
 

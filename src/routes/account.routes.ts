@@ -5,13 +5,13 @@ import AuthMiddleware from '../middlewares/auth.middleware';
 import ValidationMiddleware from '../middlewares/validation.middleware';
 import accountValidator from '../validators/account.validator';
 
-class AccountRoutes {
+export class AccountRoutes {
   private _router: Router;
 
   private _validator: ObjectSchema;
 
-  constructor() {
-    this._router = Router();
+  constructor(router: Router = Router()) {
+    this._router = router;
     this._validator = accountValidator;
   }
 

@@ -48,10 +48,98 @@
           }
         }
       },
+      "user": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      },
+      "balance": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "balance": {
+            "type": "number"
+          }
+        }
+      },
       "account": {
         "type": "object",
         "properties": {
           "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "allAssets": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "ticker": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "assets": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "number"
+            },
+            "assetId": {
+              "type": "number"
+            },
+            "ticker": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number"
+            },
+            "price": {
+              "type": "number"
+            },
+            "change": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "asset": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number"
+          },
+          "assetId": {
+            "type": "number"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "change": {
             "type": "number"
           }
         }
@@ -63,6 +151,20 @@
             "type": "number"
           },
           "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "position": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number"
+          },
+          "assetId": {
+            "type": "number"
+          },
+          "quantity": {
             "type": "number"
           }
         }
@@ -79,34 +181,34 @@
   "tags": [
     {
       "name": "login",
-      "description": "Operations related to login"
+      "description": "Operações relacionadas ao login."
     },
     {
       "name": "register",
-      "description": "Operations related to register"
+      "description": "Operações relacionadas à abertura de conta."
     },
     {
       "name": "user",
-      "description": "Operations related to user"
+      "description": "Operations relacionadas à pessoa usuária."
     },
     {
       "name": "account",
-      "description": "Operations related to account"
+      "description": "Operations relacionadas à conta digital."
     },
     {
       "name": "asset",
-      "description": "Operations related to asset"
+      "description": "Operations relacionadas a ativos."
     },
     {
       "name": "order",
-      "description": "Operations related to order"
+      "description": "Operations relacionadas a ordens de compra e venda de ativos."
     }
   ],
   "paths": {
     "/login": {
       "post": {
-        "summary": "User login",
-        "description": "Authenticate user data with JWT",
+        "summary": "Realizar login",
+        "description": "Autenticação da pessoa usuária e retorno de um token JWT.",
         "tags": ["login"],
         "requestBody": {
           "content": {
@@ -132,7 +234,7 @@
             "description": "Bad Request. Dados inseridos incorretamente."
           },
           "401": {
-            "description": "Authorization. Senha incorreta."
+            "description": "Unauthorized. Senha incorreta."
           },
           "404": {
             "description": "Not Found. Usuário não cadastrado."
@@ -142,8 +244,8 @@
     },
     "/register": {
       "post": {
-        "summary": "User register",
-        "description": "Create user and return JWT",
+        "summary": "Abrir conta",
+        "description": "Cadastro da pessoa usuária e retorno de um token JWT.",
         "tags": ["register"],
         "requestBody": {
           "content": {
@@ -179,8 +281,8 @@
         "security": [{
           "bearerAuth": []
         }],
-        "summary": "Get user name",
-        "description": "Get user first name and last name",
+        "summary": "Retornar o nome da pessoa usuária",
+        "description": "Retorna o nome e sobrenome da pessoa usuária.",
         "tags": ["user"],
         "responses": {
           "200": {
@@ -188,13 +290,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/user"
                 }
               }
             }
           },
-          "400": {
-            "description": "Bad Request"
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
           }
         }
       }
@@ -204,8 +306,8 @@
         "security": [{
           "bearerAuth": []
         }],
-        "summary": "Get account balance",
-        "description": "Get current user account balance",
+        "summary": "Retornar o saldo da conta",
+        "description": "Retora o saldo atual da conta digital.",
         "tags": ["account"],
         "responses": {
           "200": {
@@ -213,13 +315,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/balance"
                 }
               }
             }
           },
-          "400": {
-            "description": "Bad Request"
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
           }
         }
       }
@@ -229,8 +331,8 @@
         "security": [{
           "bearerAuth": []
         }],
-        "summary": "Deposit money on account",
-        "description": "Deposit money on account",
+        "summary": "Depositar dinheiro na conta",
+        "description": "Realiza depósito de dinheiro na conta digital.",
         "tags": ["account"],
         "requestBody": {
           "content": {
@@ -247,13 +349,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/balance"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request. Dados inseridos incorretamente."
+          },
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
           }
         }
       }
@@ -263,8 +368,8 @@
         "security": [{
           "bearerAuth": []
         }],
-        "summary": "Withdraw money from account",
-        "description": "Withdraw money from account",
+        "summary": "Retirar dinheiro da conta",
+        "description": "Realiza retirada de dinheiro da conta digital.",
         "tags": ["account"],
         "requestBody": {
           "content": {
@@ -281,13 +386,19 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/balance"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request. Dados inseridos incorretamente."
+          },
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
+          },
+          "422": {
+            "description": "Unprocessable Entity. Saldo insuficiente."
           }
         }
       }
@@ -297,8 +408,8 @@
         "security": [{
           "bearerAuth": []
         }],
-        "summary": "Get all assets available",
-        "description": "Get all assets available on the broker",
+        "summary": "Retornar todos os ativos disponíveis",
+        "description": "Retorna todos os ativos disponíveis na corretora.",
         "tags": ["asset"],
         "responses": {
           "200": {
@@ -306,13 +417,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/allAssets"
                 }
               }
             }
           },
-          "400": {
-            "description": "Bad Request"
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
           }
         }
       }
@@ -322,8 +433,8 @@
         "security": [{
           "bearerAuth": []
         }],
-        "summary": "Get all user assets",
-        "description": "Get all assets owned by the user",
+        "summary": "Retornar todos os ativos da pessoa usuária",
+        "description": "Retorna todos os ativos que a pessoa usuária possui.",
         "tags": ["asset"],
         "responses": {
           "200": {
@@ -331,13 +442,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/assets"
                 }
               }
             }
           },
-          "400": {
-            "description": "Bad Request"
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
           }
         }
       }
@@ -347,22 +458,33 @@
         "security": [{
           "bearerAuth": []
         }],
-        "summary": "Get single asset",
-        "description": "Get data from a single asset",
+        "summary": "Retornar um ativo específico",
+        "description": "Retorna os dados de um ativo específico.",
         "tags": ["asset"],
+        "parameters": [
+          {
+            "name": "assetId",
+            "in": "path",
+            "description": "asset ID",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/asset"
                 }
               }
             }
           },
-          "400": {
-            "description": "Bad Request"
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
+          },
+          "404": {
+            "description": "Not Found. Ativo indisponível na corretora."
           }
         }
       }
@@ -372,8 +494,8 @@
         "security": [{
           "bearerAuth": []
         }],
-        "summary": "Send order to buy asset",
-        "description": "Send order to buy asset",
+        "summary": "Enviar ordem de compra",
+        "description": "Envia ordem de compra de um ativo.",
         "tags": ["order"],
         "requestBody": {
           "content": {
@@ -390,13 +512,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/position"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request. Dados inseridos incorretamente."
+          },
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
+          },
+          "404": {
+            "description": "Not Found. Ativo indisponível na corretora."
+          },
+          "422": {
+            "description": "Unprocessable Entity. Quantidade indisponível na corretora."
           }
         }
       }
@@ -406,8 +537,8 @@
         "security": [{
           "bearerAuth": []
         }],
-        "summary": "Send order to buy asset",
-        "description": "Send order to buy asset",
+        "summary": "Enviar ordem de venda",
+        "description": "Envia ordem de venda de um ativo.",
         "tags": ["order"],
         "requestBody": {
           "content": {
@@ -424,13 +555,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/position"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request. Dados inseridos incorretamente."
+          },
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
+          },
+          "404": {
+            "description": "Not Found. Ativo não consta na carteira."
+          },
+          "422": {
+            "description": "Unprocessable Entity. Quantidade insuficiente na carteira."
           }
         }
       }

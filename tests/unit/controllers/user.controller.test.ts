@@ -36,6 +36,6 @@ describe('The UserController getUser function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(userMock));
+    expect(responseMock.json).toHaveBeenCalledWith(userMock);
   });
 });

@@ -37,7 +37,7 @@ describe('The OrderController buyAsset function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(positionMock));
+    expect(responseMock.json).toHaveBeenCalledWith(positionMock);
   });
 });
 
@@ -76,6 +76,6 @@ describe('The OrderController sellAsset function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(positionMock));
+    expect(responseMock.json).toHaveBeenCalledWith(positionMock);
   });
 });

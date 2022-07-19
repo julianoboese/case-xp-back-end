@@ -37,6 +37,6 @@ describe('The registerController register function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining({ token: 'q1w2e3r4t5' }));
+    expect(responseMock.json).toHaveBeenCalledWith({ token: 'q1w2e3r4t5' });
   });
 });

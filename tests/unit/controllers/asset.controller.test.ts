@@ -52,7 +52,7 @@ describe('The AssetController getAllAssets function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(assetsMock));
+    expect(responseMock.json).toHaveBeenCalledWith(assetsMock);
   });
 });
 
@@ -104,7 +104,7 @@ describe('The AssetController getAssets function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(assetsMock));
+    expect(responseMock.json).toHaveBeenCalledWith(assetsMock);
   });
 });
 
@@ -146,6 +146,6 @@ describe('The AssetController getAsset function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(assetMock));
+    expect(responseMock.json).toHaveBeenCalledWith(assetMock);
   });
 });

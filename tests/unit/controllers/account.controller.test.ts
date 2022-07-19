@@ -37,7 +37,7 @@ describe('The AccountController getBalance function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(balanceMock));
+    expect(responseMock.json).toHaveBeenCalledWith(balanceMock);
   });
 });
 
@@ -75,7 +75,7 @@ describe('The AccountController deposit function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(newBalanceMock));
+    expect(responseMock.json).toHaveBeenCalledWith(newBalanceMock);
   });
 });
 
@@ -113,6 +113,6 @@ describe('The AccountController withdraw function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining(newBalanceMock));
+    expect(responseMock.json).toHaveBeenCalledWith(newBalanceMock);
   });
 });

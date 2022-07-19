@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 
 describe('The LoginController login function', () => {
   
-  const requestMock = { body: { email: 'jon.doe@email.com', password: '12345678' }};
+  const requestMock = { body: { email: 'felipe.silva@email.com', password: '12345678' }};
   const responseMock = {
     status: jest.fn(),
     json: jest.fn(),
@@ -30,6 +30,6 @@ describe('The LoginController login function', () => {
 
     expect(responseMock.json).toHaveBeenCalled();
     expect(responseMock.json).toHaveBeenCalledTimes(1);
-    expect(responseMock.json).toHaveBeenCalledWith(expect.objectContaining({ token: 'q1w2e3r4t5' }));
+    expect(responseMock.json).toHaveBeenCalledWith({ token: 'q1w2e3r4t5' });
   });
 });

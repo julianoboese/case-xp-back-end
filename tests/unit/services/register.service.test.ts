@@ -11,7 +11,7 @@ describe('The RegisterService register function', () => {
   it('should throw an error if user is already registered', async () => {
     const userMock = {
       id: 1,
-      email: 'jon.doe@email.com',
+      email: 'felipe.silva@email.com',
     };
 
     prismaMock.user.findUnique.mockResolvedValue(userMock as User);
@@ -19,7 +19,7 @@ describe('The RegisterService register function', () => {
     const registerData = {
       firstName: 'Jon',
       lastName: 'Doe',
-      email: 'jon.doe@email.com',
+      email: 'felipe.silva@email.com',
       password: '12345678',
     };
 

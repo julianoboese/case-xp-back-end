@@ -18,7 +18,7 @@ export default class Jwt {
     }
 
     try {
-      const [, token] = auth.split(' ');
+      const token = auth.replace('Bearer ', '');
       const validate = verify(token, Jwt.TOKEN_SECRET);
       return validate;
     } catch (_error) {

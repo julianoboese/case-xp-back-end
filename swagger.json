@@ -527,7 +527,7 @@
             "description": "Not Found. Ativo indisponível na corretora."
           },
           "422": {
-            "description": "Unprocessable Entity. Quantidade indisponível na corretora."
+            "description": "Unprocessable Entity. Saldo insuficiente / Quantidade indisponível na corretora."
           }
         }
       }

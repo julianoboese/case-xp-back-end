@@ -61,7 +61,7 @@ describe('The AssetService getAssets function', () => {
 
     prismaMock.userAsset.findMany.mockResolvedValue(assetsMock);
 
-    jest.spyOn(AssetInfo, <any>'mockFetchAssetPrice')
+    jest.spyOn(AssetInfo, 'fetchAssetInfo')
       .mockResolvedValueOnce({price: 20.57, change: -1.5})
       .mockResolvedValue({price: 5.6, change: 0.23})
 
@@ -109,7 +109,7 @@ describe('The AssetService getAsset function', () => {
     prismaMock.userAsset.findUnique.mockResolvedValue(null);
     prismaMock.asset.findUnique.mockResolvedValue(assetMock as Asset);
 
-    jest.spyOn(AssetInfo, <any>'mockFetchAssetPrice')
+    jest.spyOn(AssetInfo, 'fetchAssetInfo')
       .mockResolvedValue({price: 20.57, change: -1.5})
 
     const expectedReturn = {
@@ -138,7 +138,7 @@ describe('The AssetService getAsset function', () => {
 
     prismaMock.userAsset.findUnique.mockResolvedValue(assetMock);
 
-    jest.spyOn(AssetInfo, <any>'mockFetchAssetPrice')
+    jest.spyOn(AssetInfo, 'fetchAssetInfo')
       .mockResolvedValue({price: 20.57, change: -1.5})
 
     const expectedReturn = {

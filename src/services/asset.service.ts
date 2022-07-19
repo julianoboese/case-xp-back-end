@@ -29,7 +29,7 @@ export default class AssetService {
         .map(async (userAsset) => {
           const { assetId, quantity, asset } = userAsset;
           const { ticker } = asset;
-          const { price, change } = await AssetInfo.mockFetchAssetPrice();
+          const { price, change } = await AssetInfo.fetchAssetInfo(ticker);
 
           return { userId, assetId, ticker, quantity, price, change };
         }),
@@ -59,7 +59,7 @@ export default class AssetService {
       if (!asset) throw new HttpError(404, 'Ativo indisponível na corretora.');
 
       const { ticker } = asset;
-      const { price, change } = await AssetInfo.mockFetchAssetPrice();
+      const { price, change } = await AssetInfo.fetchAssetInfo(ticker);
 
       return { userId, assetId, ticker, quantity: 0, price, change };
     }
@@ -67,7 +67,7 @@ export default class AssetService {
     const { quantity, asset } = userAsset;
     const { ticker } = asset;
 
-    const { price, change } = await AssetInfo.mockFetchAssetPrice();
+    const { price, change } = await AssetInfo.fetchAssetInfo(ticker);
 
     return { userId, assetId, ticker, quantity, price, change };
   };

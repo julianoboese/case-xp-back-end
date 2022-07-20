@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import request from 'supertest';
 import app from '../../src/app';
 
-describe('The POST /login route', () => {
+describe('The POST /register route', () => {
   const prisma = new PrismaClient();
   const { server } = app;
 

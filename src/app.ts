@@ -24,12 +24,12 @@ class App {
     this.server.use(express.json());
   }
 
-  private routes(): void {
-    this.server.use(routes);
-  }
-
   private docs(): void {
     this.server.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+  }
+
+  private routes(): void {
+    this.server.use(routes);
   }
 
   private handleErrors(): void {

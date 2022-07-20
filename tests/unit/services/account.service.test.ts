@@ -7,6 +7,13 @@ describe('The AccountService getBalance function', () => {
 
   afterEach(() => jest.clearAllMocks());
 
+  it('should throw an error if user is not found', async () => {
+    prismaMock.user.findUnique.mockResolvedValue(null);
+
+    await expect(AccountService.getBalance(1000))
+      .rejects.toThrow('Pessoa usuária não encontrada.');
+  });
+
   it('should return the user account current balance', async () => {
     const userMock = {
       id: 1,

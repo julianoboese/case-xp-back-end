@@ -9,7 +9,9 @@ export default class AccountService {
       select: { id: true, balance: true },
     });
 
-    return { id: balance?.id, balance: Number(balance?.balance) } as IBalance;
+    if (!balance) throw new HttpError(404, 'Pessoa usuária não encontrada.');
+
+    return { id: balance.id, balance: Number(balance.balance) } as IBalance;
   };
 
   public static deposit = async (id: number, amount: number): Promise<IBalance> => {

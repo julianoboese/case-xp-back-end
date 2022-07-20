@@ -14,7 +14,7 @@ describe('The AccountController getBalance function', () => {
 
   const balanceMock = {
     id: 1,
-    balance: 1000.00 as unknown as Decimal
+    balance: 1000.00
   }
   
   beforeEach(() => {
@@ -52,7 +52,7 @@ describe('The AccountController deposit function', () => {
 
   const newBalanceMock = {
     id: 1,
-    balance: 1100.00 as unknown as Decimal
+    balance: 1100.00
   }
   
   beforeEach(() => {
@@ -90,7 +90,7 @@ describe('The AccountController withdraw function', () => {
 
   const newBalanceMock = {
     id: 1,
-    balance: 900.00 as unknown as Decimal
+    balance: 900.00
   }
   
   beforeEach(() => {

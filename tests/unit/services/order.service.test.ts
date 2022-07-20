@@ -54,7 +54,7 @@ describe('The OrderService buyAsset function', () => {
 
     const balance = {
       id: 1, 
-      balance: 2000.00 as unknown as Decimal
+      balance: 2000.00
     };
 
     jest.spyOn(AccountService, 'getBalance').mockResolvedValue(balance);
@@ -82,7 +82,7 @@ describe('The OrderService buyAsset function', () => {
   
     const balance = {
       id: 1, 
-      balance: 5000.00 as unknown as Decimal
+      balance: 5000.00
     };
   
     jest.spyOn(AccountService, 'getBalance').mockResolvedValue(balance);

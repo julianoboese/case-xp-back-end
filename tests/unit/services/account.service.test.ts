@@ -46,7 +46,7 @@ describe('The AccountService withdraw function', () => {
   it('should throw an error if user doesn\'t have enough funds', async () => {
     const userMock = {
       id: 1,
-      balance: 1000.00 as unknown as Decimal,
+      balance: 1000.00,
     };
 
     jest.spyOn(AccountService, 'getBalance').mockResolvedValue(userMock)

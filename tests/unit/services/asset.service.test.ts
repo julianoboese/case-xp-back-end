@@ -1,5 +1,5 @@
 import { Asset } from '@prisma/client';
-import { prismaMock } from '../../prisma.mock';
+import prismaMock from '../../prisma.mock';
 import AssetService from '../../../src/services/asset.service';
 import AssetInfo from '../../../src/utils/asset.info';
 

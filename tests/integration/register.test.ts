@@ -22,8 +22,8 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"firstName" is required')
-  })
+    expect(result.body.message).toBe('"firstName" is required');
+  });
 
   it('validates that "firstName" must be a string', async () => {
     const result = await request(server).post('/register').send({
@@ -35,8 +35,8 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"firstName" must be a string')
-  })
+    expect(result.body.message).toBe('"firstName" must be a string');
+  });
 
   it('validates that "firstName" must have at least 2 characters', async () => {
     const result = await request(server).post('/register').send({
@@ -48,8 +48,10 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"firstName" length must be at least 2 characters long')
-  })
+    expect(result.body.message).toBe(
+      '"firstName" length must be at least 2 characters long',
+    );
+  });
 
   it('validates that "lastName" is required', async () => {
     const result = await request(server).post('/register').send({
@@ -60,8 +62,8 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"lastName" is required')
-  })
+    expect(result.body.message).toBe('"lastName" is required');
+  });
 
   it('validates that "lastName" must be a string', async () => {
     const result = await request(server).post('/register').send({
@@ -73,8 +75,8 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"lastName" must be a string')
-  })
+    expect(result.body.message).toBe('"lastName" must be a string');
+  });
 
   it('validates that "lastName" must have at least 2 characters', async () => {
     const result = await request(server).post('/register').send({
@@ -86,8 +88,10 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"lastName" length must be at least 2 characters long')
-  })
+    expect(result.body.message).toBe(
+      '"lastName" length must be at least 2 characters long',
+    );
+  });
 
   it('validates that "email" is required', async () => {
     const result = await request(server).post('/register').send({
@@ -98,8 +102,8 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"email" is required')
-  })
+    expect(result.body.message).toBe('"email" is required');
+  });
 
   it('validates that "email" must be a string', async () => {
     const result = await request(server).post('/register').send({
@@ -111,8 +115,8 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"email" must be a string')
-  })
+    expect(result.body.message).toBe('"email" must be a string');
+  });
 
   it('validates that "email" must be valid', async () => {
     const result = await request(server).post('/register').send({
@@ -124,8 +128,8 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"email" must be a valid email')
-  })
+    expect(result.body.message).toBe('"email" must be a valid email');
+  });
 
   it('validates that "password" is required', async () => {
     const result = await request(server).post('/register').send({
@@ -136,8 +140,8 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"password" is required')
-  })
+    expect(result.body.message).toBe('"password" is required');
+  });
 
   it('validates that "password" must be a string', async () => {
     const result = await request(server).post('/register').send({
@@ -149,8 +153,8 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"password" must be a string')
-  })
+    expect(result.body.message).toBe('"password" must be a string');
+  });
 
   it('validates that "password" must have at least 8 characters', async () => {
     const result = await request(server).post('/register').send({
@@ -162,8 +166,10 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(400);
     expect(result.body.token).toBeUndefined();
-    expect(result.body.message).toBe('"password" length must be at least 8 characters long')
-  })
+    expect(result.body.message).toBe(
+      '"password" length must be at least 8 characters long',
+    );
+  });
 
   it('returns an error if user is already registered', async () => {
     const result = await request(server).post('/register').send({

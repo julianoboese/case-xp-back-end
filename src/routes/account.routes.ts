@@ -1,45 +1,33 @@
 import { Router } from 'express';
-import { ObjectSchema } from 'joi';
 import AccountController from '../controllers/account.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
-import ValidationMiddleware from '../middlewares/validation.middleware';
 import accountValidator from '../validators/account.validator';
+import AValidatedRoutes from './abs.validated.routes';
 
-export class AccountRoutes {
-  private _router: Router;
-
-  private _validator: ObjectSchema;
-
-  constructor(router: Router = Router()) {
-    this._router = router;
-    this._validator = accountValidator;
-  }
-
+export class AccountRoutes extends AValidatedRoutes {
   public routes(): Router {
-    const accountValidation = new ValidationMiddleware(this._validator);
-
-    this._router.get(
+    this.router.get(
       '/account',
       AuthMiddleware.authenticate,
       AccountController.getBalance,
     );
 
-    this._router.post(
+    this.router.post(
       '/account/deposit',
       AuthMiddleware.authenticate,
-      accountValidation.validate,
+      this.validation.validate,
       AccountController.deposit,
     );
 
-    this._router.post(
+    this.router.post(
       '/account/withdraw',
       AuthMiddleware.authenticate,
-      accountValidation.validate,
+      this.validation.validate,
       AccountController.withdraw,
     );
 
-    return this._router;
+    return this.router;
   }
 }
 
-export default new AccountRoutes();
+export default new AccountRoutes(accountValidator);

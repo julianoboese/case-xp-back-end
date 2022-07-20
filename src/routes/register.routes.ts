@@ -1,30 +1,18 @@
 import { Router } from 'express';
-import { ObjectSchema } from 'joi';
 import RegisterController from '../controllers/register.controller';
-import ValidationMiddleware from '../middlewares/validation.middleware';
 import registerValidator from '../validators/register.validator';
+import AValidatedRoutes from './abs.validated.routes';
 
-export class RegisterRoutes {
-  private _router: Router;
-
-  private _validator: ObjectSchema;
-
-  constructor(router: Router = Router()) {
-    this._router = router;
-    this._validator = registerValidator;
-  }
-
+export class RegisterRoutes extends AValidatedRoutes {
   public routes(): Router {
-    const registerValidation = new ValidationMiddleware(this._validator);
-
-    this._router.post(
+    this.router.post(
       '/register',
-      registerValidation.validate,
+      this.validation.validate,
       RegisterController.register,
     );
 
-    return this._router;
+    return this.router;
   }
 }
 
-export default new RegisterRoutes();
+export default new RegisterRoutes(registerValidator);

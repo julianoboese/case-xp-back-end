@@ -1,5 +1,6 @@
 import { User } from '@prisma/client';
 import prisma from '../prisma';
+import HttpError from '../utils/http.error';
 
 export default class UserService {
   public static getUser = async (id: number): Promise<Pick<User, 'firstName' | 'lastName'>> => {
@@ -8,6 +9,8 @@ export default class UserService {
       select: { firstName: true, lastName: true },
     });
 
-    return user as User;
+    if (!user) throw new HttpError(404, 'Pessoa usuária não encontrada.');
+
+    return user;
   };
 }

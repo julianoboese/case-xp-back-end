@@ -4,7 +4,8 @@
   "scripts": {
     "seed": "ts-node ./prisma/seed.ts",
     "db:reset": "npx prisma migrate reset --force && npm run seed",
-    "postgres:start": "docker-compose up -d",
+    "postgres:up": "docker-compose up -d",
+    "postgres:down": "docker-compose down",
     "lint": "eslint .",
     "build": "tsc",
     "postinstall": "npx prisma generate",
@@ -13,10 +14,10 @@
     "dev": "nodemon --watch \"./src/**\" --ext \"ts,js\" --exec \"ts-node src/server.ts\"",
     "test:unit": "jest --testPathPattern=tests/unit",
     "test:unit:coverage": "jest --coverage --testPathPattern=tests/unit",
-    "test:integration": "npm run db:reset && jest --testPathPattern=tests/integration",
-    "test:integration:coverage": "npm run db:reset && jest --coverage --testPathPattern=tests/integration",
-    "test": "npm run db:reset && jest --testPathPattern=tests",
-    "test:coverage": "npm run db:reset && jest --coverage --testPathPattern=tests"
+    "test:integration": "npm run postgres:up && npm run db:reset && jest --testPathPattern=tests/integration && npm run postgres:down",
+    "test:integration:coverage": "npm run postgres:up && npm run db:reset && jest --coverage --testPathPattern=tests/integration && npm run postgres:down",
+    "test": "npm run postgres:up && npm run db:reset && jest --testPathPattern=tests && npm run postgres:down",
+    "test:coverage": "npm run postgres:up && npm run db:reset && jest --coverage --testPathPattern=tests && npm run postgres:down"
   },
   "keywords": [],
   "author": "",

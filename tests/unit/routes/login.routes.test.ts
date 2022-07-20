@@ -1,5 +1,5 @@
-import { LoginRoutes } from '../../../src/routes/login.routes';
 import { Router } from 'express';
+import { LoginRoutes } from '../../../src/routes/login.routes';
 import loginValidator from '../../../src/validators/login.validator';
 import LoginController from '../../../src/controllers/login.controller';
 
@@ -12,10 +12,14 @@ describe('The LoginRoutes "routes" function', () => {
     const routerMock = new RouterMock();
     const loginRoutes = new LoginRoutes(loginValidator, routerMock as Router);
     loginRoutes.routes();
-    
+
     expect(routerMock.post).toHaveBeenCalled();
     expect(routerMock.post).toHaveBeenCalledTimes(1);
-    expect(routerMock.post).toHaveBeenCalledWith('/login', loginRoutes.validation.validate, LoginController.login);
+    expect(routerMock.post).toHaveBeenCalledWith(
+      '/login',
+      loginRoutes.validation.validate,
+      LoginController.login,
+    );
   });
 
   it('should return the router', async () => {

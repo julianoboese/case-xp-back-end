@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { ObjectSchema } from 'joi';
+import IValidation from '../interfaces/validation.interface';
 import HttpError from '../utils/http.error';
 
-export default class ValidationMiddleware {
+export default class ValidationMiddleware implements IValidation {
   private _schema: ObjectSchema;
 
   constructor(schema: ObjectSchema) {

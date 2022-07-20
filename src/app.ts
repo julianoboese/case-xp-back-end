@@ -13,8 +13,8 @@ class App {
   constructor() {
     this.server = express();
     this.config();
-    this.routes();
     this.docs();
+    this.routes();
     this.handleErrors();
   }
 
@@ -29,7 +29,7 @@ class App {
   }
 
   private docs(): void {
-    this.server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+    this.server.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
   }
 
   private handleErrors(): void {

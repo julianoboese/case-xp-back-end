@@ -1,9 +1,8 @@
-import { prismaMock } from "../.././prisma.mock";
+import { User } from '@prisma/client';
+import { prismaMock } from '../../prisma.mock';
 import UserService from '../../../src/services/user.service';
-import { User } from "@prisma/client";
 
 describe('The UserService getUser function', () => {
-
   afterEach(() => jest.clearAllMocks());
 
   it('should throw an error if user is not found', async () => {

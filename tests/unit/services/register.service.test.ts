@@ -1,11 +1,10 @@
-import { prismaMock } from "../../prisma.mock";
 import bcrypt from 'bcrypt';
+import { User } from '@prisma/client';
+import { prismaMock } from '../../prisma.mock';
 import RegisterService from '../../../src/services/register.service';
-import Jwt from "../../../src/utils/jwt";
-import { User } from "@prisma/client";
+import Jwt from '../../../src/utils/jwt';
 
 describe('The RegisterService register function', () => {
-
   afterEach(() => jest.clearAllMocks());
 
   it('should throw an error if user is already registered', async () => {
@@ -24,7 +23,7 @@ describe('The RegisterService register function', () => {
     };
 
     await expect(RegisterService.register(registerData))
-        .rejects.toThrow('Usuário já possui conta.');
+      .rejects.toThrow('Usuário já possui conta.');
   });
 
   it('should return a token if register data is valid', async () => {
@@ -38,7 +37,7 @@ describe('The RegisterService register function', () => {
       email: 'jane.doe@email.com',
       password: '12345678',
     };
-    prismaMock.user.create.mockResolvedValue({id: 5, email: 'jane.doe@email.com'} as User)
+    prismaMock.user.create.mockResolvedValue({ id: 5, email: 'jane.doe@email.com' } as User);
 
     const token = await RegisterService.register(registerData);
 

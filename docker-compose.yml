@@ -7,10 +7,27 @@ services:
     environment:
       - POSTGRES_USER=prisma
       - POSTGRES_PASSWORD=prisma
-    volumes:
-      - postgres:/var/lib/postgresql/data
     ports:
       - '5432:5432'
 
-volumes:
-  postgres:
+  node:
+    image: node:16
+    container_name: case-xp
+    tty: true
+    stdin_open: true
+    command: bash
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: postgresql://prisma:prisma@postgres:5432/case_xp_back_end
+      TOKEN_SECRET: mySecret
+
+networks:
+  default:
+    name: case-xp

@@ -7,7 +7,7 @@ describe('The Jwt "generateToken" function', () => {
   it('should return the token signed', async () => {
     jest.spyOn(jwt, 'sign').mockImplementation(() => 'q1w2e3r4t5');
 
-    const token = Jwt.generateToken({ id: 1, email: 'felipe.silva@email.com' });
+    const token = Jwt.generateToken({ id: 1, email: 'fulano.silva@email.com' });
 
     expect(token).toBe('q1w2e3r4t5');
   });
@@ -35,10 +35,10 @@ describe('The Jwt "authenticateToken" function', () => {
   it('should return user data if token is verified', async () => {
     jest
       .spyOn(jwt, 'verify')
-      .mockImplementation(() => ({ id: 1, email: 'felipe.silva@email.com' }));
+      .mockImplementation(() => ({ id: 1, email: 'fulano.silva@email.com' }));
 
     const user = await Jwt.authenticateToken('q1w2e3r4t5');
 
-    expect(user).toEqual({ id: 1, email: 'felipe.silva@email.com' });
+    expect(user).toEqual({ id: 1, email: 'fulano.silva@email.com' });
   });
 });

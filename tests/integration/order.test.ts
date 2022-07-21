@@ -42,7 +42,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "assetId" is required', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -61,7 +61,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "assetId" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -81,7 +81,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "assetId" must be an integer', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -101,7 +101,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "assetId" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -121,7 +121,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "amount" is required', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -140,7 +140,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "amount" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -160,7 +160,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "amount" must be an integer', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -180,7 +180,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "amount" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -200,7 +200,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "price" is required', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -219,7 +219,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "price" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -239,7 +239,7 @@ describe('The POST /order/buy route', () => {
 
   it('validates that "price" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -259,7 +259,7 @@ describe('The POST /order/buy route', () => {
 
   it('returns the user new position and changes balance if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -335,7 +335,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "assetId" is required', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -354,7 +354,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "assetId" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -374,7 +374,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "assetId" must be an integer', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -394,7 +394,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "assetId" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -414,7 +414,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "amount" is required', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -433,7 +433,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "amount" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -453,7 +453,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "amount" must be an integer', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -473,7 +473,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "amount" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -493,7 +493,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "price" is required', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -512,7 +512,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "price" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -532,7 +532,7 @@ describe('The POST /order/sell route', () => {
 
   it('validates that "price" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 
@@ -552,7 +552,7 @@ describe('The POST /order/sell route', () => {
 
   it('returns the user new position and changes balance if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: '12345678',
     });
 

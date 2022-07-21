@@ -4,7 +4,7 @@ import LoginController from '../../../src/controllers/login.controller';
 
 describe('The LoginController login function', () => {
   const requestMock = {
-    body: { email: 'felipe.silva@email.com', password: '12345678' },
+    body: { email: 'fulano.silva@email.com', password: '12345678' },
   };
   const responseMock = {
     status: jest.fn(),

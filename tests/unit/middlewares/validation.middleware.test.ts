@@ -9,7 +9,7 @@ describe('The ValidationMiddleware "validate" function', () => {
   const nextMock = jest.fn();
 
   it('should throw an error if request is invalid', async () => {
-    const requestMock = { body: { email: 'felipe.silva@email.com' } };
+    const requestMock = { body: { email: 'fulano.silva@email.com' } };
 
     expect(() => {
       sampleValidation.validate(
@@ -22,7 +22,7 @@ describe('The ValidationMiddleware "validate" function', () => {
 
   it('should call "next" function if request is valid', async () => {
     const requestMock = {
-      body: { email: 'felipe.silva@email.com', password: '12345678' },
+      body: { email: 'fulano.silva@email.com', password: '12345678' },
     };
 
     sampleValidation.validate(

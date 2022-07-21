@@ -10,7 +10,7 @@ describe('The AuthMiddleware "auth" function', () => {
   beforeEach(() => {
     jest
       .spyOn(Jwt, 'authenticateToken')
-      .mockResolvedValue({ id: 1, email: 'felipe.silva@email.com' });
+      .mockResolvedValue({ id: 1, email: 'fulano.silva@email.com' });
   });
 
   afterEach(() => jest.clearAllMocks());
@@ -24,7 +24,7 @@ describe('The AuthMiddleware "auth" function', () => {
 
     expect(responseMock.locals.user).toEqual({
       id: 1,
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
     });
   });
 

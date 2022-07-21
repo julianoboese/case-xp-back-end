@@ -33,7 +33,7 @@ describe('The GET /assets/all route', () => {
 
   it('returns all assets if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -84,7 +84,7 @@ describe('The GET /assets route', () => {
 
   it('returns all user assets if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -143,7 +143,7 @@ describe('The GET /assets/{assetId} route', () => {
 
   it('returns a specific asset if the user owns it', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -163,7 +163,7 @@ describe('The GET /assets/{assetId} route', () => {
 
   it('returns an error if the asset is unavailable at the broker', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -178,7 +178,7 @@ describe('The GET /assets/{assetId} route', () => {
 
   it("returns a specific asset from the broker if the user doesn't own it", async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 

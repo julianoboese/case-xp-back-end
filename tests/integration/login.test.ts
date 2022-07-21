@@ -36,7 +36,7 @@ describe('The POST /login route', () => {
 
   it('validates that "email" must be valid', async () => {
     const result = await request(server).post('/login').send({
-      email: 'felipe.silva@com',
+      email: 'fulano.silva@com',
       password: '12345678',
     });
 
@@ -47,7 +47,7 @@ describe('The POST /login route', () => {
 
   it('validates that "password" is required', async () => {
     const result = await request(server).post('/login').send({
-      email: 'felipe.silva@hey.com',
+      email: 'fulano.silva@hey.com',
     });
 
     expect(result.statusCode).toBe(400);
@@ -57,7 +57,7 @@ describe('The POST /login route', () => {
 
   it('validates that "password" must be a string', async () => {
     const result = await request(server).post('/login').send({
-      email: 'felipe.silva@hey.com',
+      email: 'fulano.silva@hey.com',
       password: 12345678,
     });
 
@@ -68,7 +68,7 @@ describe('The POST /login route', () => {
 
   it('validates that "password" must have at least 8 characters', async () => {
     const result = await request(server).post('/login').send({
-      email: 'felipe.silva@hey.com',
+      email: 'fulano.silva@hey.com',
       password: '1234567',
     });
 
@@ -92,7 +92,7 @@ describe('The POST /login route', () => {
 
   it('returns an error if password is wrong', async () => {
     const result = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345679',
     });
 
@@ -103,7 +103,7 @@ describe('The POST /login route', () => {
 
   it('returns a token if user data is correct', async () => {
     const result = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 

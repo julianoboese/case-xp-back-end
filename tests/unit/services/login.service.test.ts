@@ -18,7 +18,7 @@ describe('The LoginService login function', () => {
   it('should throw an error if password is incorrect', async () => {
     const userMock = {
       id: 1,
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     };
 
@@ -36,7 +36,7 @@ describe('The LoginService login function', () => {
   it('should return a token if login data is correct', async () => {
     const userMock = {
       id: 1,
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     };
 

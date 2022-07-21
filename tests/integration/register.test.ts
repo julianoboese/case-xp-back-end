@@ -16,7 +16,7 @@ describe('The POST /register route', () => {
   it('validates that "firstName" is required', async () => {
     const result = await request(server).post('/register').send({
       lastName: 'Carvalho',
-      email: 'ricardo.carvalho@email.com',
+      email: 'beltrano.carvalho@email.com',
       password: '12345678',
     });
 
@@ -29,7 +29,7 @@ describe('The POST /register route', () => {
     const result = await request(server).post('/register').send({
       firstName: 123456,
       lastName: 'Carvalho',
-      email: 'ricardo.carvalho@email.com',
+      email: 'beltrano.carvalho@email.com',
       password: '12345678',
     });
 
@@ -42,7 +42,7 @@ describe('The POST /register route', () => {
     const result = await request(server).post('/register').send({
       firstName: 'R',
       lastName: 'Carvalho',
-      email: 'ricardo.carvalho@email.com',
+      email: 'beltrano.carvalho@email.com',
       password: '12345678',
     });
 
@@ -55,8 +55,8 @@ describe('The POST /register route', () => {
 
   it('validates that "lastName" is required', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
-      email: 'ricardo.carvalho@email.com',
+      firstName: 'Beltrano',
+      email: 'beltrano.carvalho@email.com',
       password: '12345678',
     });
 
@@ -67,9 +67,9 @@ describe('The POST /register route', () => {
 
   it('validates that "lastName" must be a string', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
+      firstName: 'Beltrano',
       lastName: 123456,
-      email: 'ricardo.carvalho@email.com',
+      email: 'beltrano.carvalho@email.com',
       password: '12345678',
     });
 
@@ -80,9 +80,9 @@ describe('The POST /register route', () => {
 
   it('validates that "lastName" must have at least 2 characters', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
+      firstName: 'Beltrano',
       lastName: 'C',
-      email: 'ricardo.carvalho@email.com',
+      email: 'beltrano.carvalho@email.com',
       password: '12345678',
     });
 
@@ -95,7 +95,7 @@ describe('The POST /register route', () => {
 
   it('validates that "email" is required', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
+      firstName: 'Beltrano',
       lastName: 'Carvalho',
       password: '12345678',
     });
@@ -107,7 +107,7 @@ describe('The POST /register route', () => {
 
   it('validates that "email" must be a string', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
+      firstName: 'Beltrano',
       lastName: 'Carvalho',
       email: 123456,
       password: '12345678',
@@ -120,9 +120,9 @@ describe('The POST /register route', () => {
 
   it('validates that "email" must be valid', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
+      firstName: 'Beltrano',
       lastName: 'Carvalho',
-      email: 'ricardo.carvalho@com',
+      email: 'beltrano.carvalho@com',
       password: '12345678',
     });
 
@@ -133,9 +133,9 @@ describe('The POST /register route', () => {
 
   it('validates that "password" is required', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
+      firstName: 'Beltrano',
       lastName: 'Carvalho',
-      email: 'ricardo.carvalho@email.com',
+      email: 'beltrano.carvalho@email.com',
     });
 
     expect(result.statusCode).toBe(400);
@@ -145,9 +145,9 @@ describe('The POST /register route', () => {
 
   it('validates that "password" must be a string', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
+      firstName: 'Beltrano',
       lastName: 'Carvalho',
-      email: 'ricardo.carvalho@email.com',
+      email: 'beltrano.carvalho@email.com',
       password: 12345678,
     });
 
@@ -158,9 +158,9 @@ describe('The POST /register route', () => {
 
   it('validates that "password" must have at least 8 characters', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
+      firstName: 'Beltrano',
       lastName: 'Carvalho',
-      email: 'ricardo.carvalho@email.com',
+      email: 'beltrano.carvalho@email.com',
       password: '1234567',
     });
 
@@ -173,9 +173,9 @@ describe('The POST /register route', () => {
 
   it('returns an error if user is already registered', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Felipe',
+      firstName: 'Fulano',
       lastName: 'Silva',
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -186,9 +186,9 @@ describe('The POST /register route', () => {
 
   it('returns a token if user data is correct', async () => {
     const result = await request(server).post('/register').send({
-      firstName: 'Ricardo',
+      firstName: 'Beltrano',
       lastName: 'Carvalho',
-      email: 'ricardo.carvalho@email.com',
+      email: 'beltrano.carvalho@email.com',
       password: '12345678',
     });
 

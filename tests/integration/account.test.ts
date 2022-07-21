@@ -33,7 +33,7 @@ describe('The GET /account route', () => {
 
   it('returns the user balance if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -80,7 +80,7 @@ describe('The POST /account/deposit route', () => {
 
   it('validates that "amount" is required', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -96,7 +96,7 @@ describe('The POST /account/deposit route', () => {
 
   it('validates that "amount" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -112,7 +112,7 @@ describe('The POST /account/deposit route', () => {
 
   it('validates that "amount" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -128,7 +128,7 @@ describe('The POST /account/deposit route', () => {
 
   it('returns the user new balance if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -183,7 +183,7 @@ describe('The POST /account/withdraw route', () => {
 
   it('validates that "amount" is required', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -199,7 +199,7 @@ describe('The POST /account/withdraw route', () => {
 
   it('validates that "amount" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -215,7 +215,7 @@ describe('The POST /account/withdraw route', () => {
 
   it('validates that "amount" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 
@@ -231,7 +231,7 @@ describe('The POST /account/withdraw route', () => {
 
   it('returns the user new balance if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 

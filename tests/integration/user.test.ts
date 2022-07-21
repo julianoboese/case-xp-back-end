@@ -33,7 +33,7 @@ describe('The GET /user route', () => {
 
   it('returns the user data if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
-      email: 'felipe.silva@email.com',
+      email: 'fulano.silva@email.com',
       password: '12345678',
     });
 

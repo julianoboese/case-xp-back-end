@@ -1,4 +1,5 @@
-# Case XP - Back-End
+# Case XP - Back-End <!-- omit in toc -->
+
 Projeto desenvolvido para o processo seletivo para Software Engineer I na XP Inc.
 
 - Repo Back-End: https://github.com/julianoboese/case-xp-back-end
@@ -6,19 +7,30 @@ Projeto desenvolvido para o processo seletivo para Software Engineer I na XP Inc
 - Repo Front-End: https://github.com/julianoboese/case-xp-front-end
 - Front-End em produção: https://case-xp-front-end.herokuapp.com
 
+<hr />
+<br />
+
+- [💻 Projeto](#-projeto)
+  - [Entregas](#entregas)
+- [� Requisitos e Regras de Negócio](#-requisitos-e-regras-de-negócio)
+  - [Implementações adicionais](#implementações-adicionais)
+- [🚀 Tecnologias e Ferramentas](#-tecnologias-e-ferramentas)
+- [⚡ Rodando o projeto localmente](#-rodando-o-projeto-localmente)
+- [💬 Contatos](#-contatos)
+
 <br />
 
 ## 💻 Projeto
 
 <br />
 
-### Entregas:
+### Entregas
 1. **API RESTful** para uma aplicação de investimento em renda variável, com algumas funcionalidades de conta digital.
 2. **MVP** com Front-End conectado à API 100% funcional.
 
 <br />
 
-## 🚀 Requisitos e Regras de Negócio
+## 📈 Requisitos e Regras de Negócio
 Durante o desenvolvimento do projeto, **todos os requisitos** solicitados foram implementados, assim como **funcionalidades adicionais**.
 
 Além disso, foram tomadas algumas decisões de alteração dos nomes e rotas dos endpoints, assim como dos atributos enviados e retornados em cada requisição, visando a garantir uma maior coerência na aplicação como um todo.
@@ -52,7 +64,7 @@ Portanto, os endpoints foram definidos como:
   - Sendo validado que a quantidade não pode ser maior que o disponível na carteira;
   - (*Adicional*) Aumentando o saldo em conta da pessoa usuária;
 
-### Outras implementações adicionais
+### Implementações adicionais
 
 - Testes Unitários
   - Cobertura de 100% das camadas de service, controller e middlewares;

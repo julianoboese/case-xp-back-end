@@ -5,9 +5,9 @@ const prisma = new PrismaClient();
 
 async function seedUsers() {
   await prisma.user.create({ data: {
-    firstName: 'Felipe',
+    firstName: 'Fulano',
     lastName: 'Silva',
-    email: 'felipe.silva@email.com',
+    email: 'fulano.silva@email.com',
     password: await bcrypt.hash('12345678', 5),
     assets: {
       create: [
@@ -33,9 +33,9 @@ async function seedUsers() {
 
   await prisma.user.create({
     data: {
-      firstName: 'Maria',
+      firstName: 'Ciclano',
       lastName: 'Souza',
-      email: 'maria.souza@email.com',
+      email: 'ciclano.souza@email.com',
       password: await bcrypt.hash('12345678', 5),
       assets: {
         create: [

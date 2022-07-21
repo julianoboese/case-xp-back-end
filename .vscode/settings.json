@@ -9,6 +9,7 @@
     "order",
     "register",
     "valid",
-    "user"
+    "user",
+    "routes"
   ]
 }

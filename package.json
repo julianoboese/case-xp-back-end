@@ -4,7 +4,8 @@
   "scripts": {
     "seed": "ts-node ./prisma/seed.ts",
     "db:reset": "npx prisma migrate reset --force && npm run seed",
-    "postgres:start": "docker-compose up -d",
+    "postgres:up": "docker-compose up -d",
+    "postgres:down": "docker-compose down",
     "lint": "eslint .",
     "build": "tsc",
     "postinstall": "npx prisma generate",
@@ -12,9 +13,11 @@
     "start": "node dist/src/server.js",
     "dev": "nodemon --watch \"./src/**\" --ext \"ts,js\" --exec \"ts-node src/server.ts\"",
     "test:unit": "jest --testPathPattern=tests/unit",
-    "test:integration": "npx prisma migrate reset --force && npm run seed && jest --testPathPattern=tests/integration",
-    "test": "jest",
-    "test:coverage": "jest --coverage --verbose"
+    "test:unit:coverage": "jest --coverage --testPathPattern=tests/unit",
+    "test:integration": "npm run db:reset && jest --testPathPattern=tests/integration",
+    "test:integration:coverage": "npm run db:reset && jest --coverage --testPathPattern=tests/integration",
+    "test": "npm run db:reset && jest --testPathPattern=tests",
+    "test:coverage": "npm run db:reset && jest --coverage --testPathPattern=tests"
   },
   "keywords": [],
   "author": "",

@@ -1,39 +1,27 @@
 import { Router } from 'express';
-import { ObjectSchema } from 'joi';
 import OrderController from '../controllers/order.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
-import ValidationMiddleware from '../middlewares/validation.middleware';
 import orderValidator from '../validators/order.validator';
+import AValidatedRoutes from './abs.validated.routes';
 
-export class OrderRoutes {
-  private _router: Router;
-
-  private _validator: ObjectSchema;
-
-  constructor(router: Router = Router()) {
-    this._router = router;
-    this._validator = orderValidator;
-  }
-
+export class OrderRoutes extends AValidatedRoutes {
   public routes(): Router {
-    const orderValidation = new ValidationMiddleware(this._validator);
-
-    this._router.post(
+    this.router.post(
       '/order/buy',
       AuthMiddleware.authenticate,
-      orderValidation.validate,
+      this.validation.validate,
       OrderController.buyAsset,
     );
 
-    this._router.post(
+    this.router.post(
       '/order/sell',
       AuthMiddleware.authenticate,
-      orderValidation.validate,
+      this.validation.validate,
       OrderController.sellAsset,
     );
 
-    return this._router;
+    return this.router;
   }
 }
 
-export default new OrderRoutes();
+export default new OrderRoutes(orderValidator);

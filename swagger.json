@@ -7,7 +7,16 @@
   },
   "servers":[
     {
-      "url": "https://case-xp-back-end.herokuapp.com"
+      "url": "https://case-xp-back-end.herokuapp.com",
+      "description": "production"
+    },
+    {
+      "url": "https://case-xp-back-end-staging.herokuapp.com",
+      "description": "staging"
+    },
+    {
+      "url": "https://case-xp-back-end-development.herokuapp.com",
+      "description": "development"
     }
   ],
   "components": {

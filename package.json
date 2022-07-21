@@ -14,10 +14,10 @@
     "dev": "nodemon --watch \"./src/**\" --ext \"ts,js\" --exec \"ts-node src/server.ts\"",
     "test:unit": "jest --testPathPattern=tests/unit",
     "test:unit:coverage": "jest --coverage --testPathPattern=tests/unit",
-    "test:integration": "npm run postgres:up && npm run db:reset && jest --testPathPattern=tests/integration && npm run postgres:down",
-    "test:integration:coverage": "npm run postgres:up && npm run db:reset && jest --coverage --testPathPattern=tests/integration && npm run postgres:down",
-    "test": "npm run postgres:up && npm run db:reset && jest --testPathPattern=tests && npm run postgres:down",
-    "test:coverage": "npm run postgres:up && npm run db:reset && jest --coverage --testPathPattern=tests && npm run postgres:down"
+    "test:integration": "npm run db:reset && jest --testPathPattern=tests/integration",
+    "test:integration:coverage": "npm run db:reset && jest --coverage --testPathPattern=tests/integration",
+    "test": "npm run db:reset && jest --testPathPattern=tests",
+    "test:coverage": "npm run db:reset && jest --coverage --testPathPattern=tests"
   },
   "keywords": [],
   "author": "",

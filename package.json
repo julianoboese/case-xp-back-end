@@ -4,7 +4,8 @@
   "scripts": {
     "seed": "ts-node ./prisma/seed.ts",
     "db:reset": "npx prisma migrate reset --force && npm run seed",
-    "postgres:start": "docker-compose up -d",
+    "postgres:up": "docker-compose up -d",
+    "postgres:down": "docker-compose down",
     "lint": "eslint .",
     "build": "tsc",
     "postinstall": "npx prisma generate",

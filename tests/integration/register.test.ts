@@ -181,7 +181,7 @@ describe('The POST /register route', () => {
 
     expect(result.statusCode).toBe(409);
     expect(result.body.token).not.toBeDefined();
-    expect(result.body.message).toBe('Usuário já possui conta.');
+    expect(result.body.message).toBe('Pessoa usuária já possui conta.');
   });
 
   it('returns a token if user data is correct', async () => {

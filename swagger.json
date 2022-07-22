@@ -252,6 +252,55 @@
           "assetId": 348,
           "quantity": 100
         }
+      },
+      "operation": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "userId": {
+              "type": "number"
+            },
+            "type": {
+              "type": "string"
+            },
+            "assetId": {
+              "type": "number"
+            },
+            "quantity": {
+              "type": "number"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "createdAt": {
+              "type": "string"
+            }
+          }
+        },
+        "example": [
+          {
+            "id": 4,
+            "userId": 1,
+            "type": "DEPOSIT",
+            "assetId": null,
+            "quantity": null,
+            "amount": 5000,
+            "createdAt": "22/07/2022 16:19:00"
+          },
+          {
+            "id": 6,
+            "userId": 1,
+            "type": "BUY",
+            "assetId": 328,
+            "quantity": 100,
+            "amount": -5000,
+            "createdAt": "22/07/2022 16:21:13"
+          }
+        ]
       }
     },
     "securitySchemes": {
@@ -273,19 +322,23 @@
     },
     {
       "name": "user",
-      "description": "Operations relacionadas à pessoa usuária."
+      "description": "Operações relacionadas à pessoa usuária."
     },
     {
       "name": "account",
-      "description": "Operations relacionadas à conta digital."
+      "description": "Operações relacionadas à conta digital."
     },
     {
       "name": "asset",
-      "description": "Operations relacionadas a ativos."
+      "description": "Operações relacionadas a ativos."
     },
     {
       "name": "order",
-      "description": "Operations relacionadas a ordens de compra e venda de ativos."
+      "description": "Operações relacionadas a ordens de compra e venda de ativos."
+    },
+    {
+      "name": "operation",
+      "description": "Operações relacionadas ao extrato da conta."
     }
   ],
   "paths": {
@@ -661,6 +714,31 @@
           },
           "422": {
             "description": "Unprocessable Entity. Quantidade insuficiente na carteira."
+          }
+        }
+      }
+    },
+    "/operations": {
+      "get": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Verificar extrato da conta",
+        "description": "Retorna extrato com todas as operações efetuadas.",
+        "tags": ["operation"],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/operation"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
           }
         }
       }

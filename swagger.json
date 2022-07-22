@@ -278,6 +278,9 @@
             },
             "createdAt": {
               "type": "string"
+            },
+            "ticker": {
+              "type": "string"
             }
           }
         },
@@ -289,7 +292,8 @@
             "assetId": null,
             "quantity": null,
             "amount": 5000,
-            "createdAt": "22/07/2022 16:19:00"
+            "createdAt": "22/07/2022 16:19:00",
+            "ticker": null
           },
           {
             "id": 6,
@@ -298,7 +302,8 @@
             "assetId": 328,
             "quantity": 100,
             "amount": -5000,
-            "createdAt": "22/07/2022 16:21:13"
+            "createdAt": "22/07/2022 16:21:13",
+            "ticker": "RENT3"
           }
         ]
       }

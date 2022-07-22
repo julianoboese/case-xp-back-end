@@ -7,12 +7,12 @@ export default class OperationService {
       where: { userId: id },
     });
 
-    const timeAdjustedOperations = operations.map((operation) => ({
+    const formattedOperations = operations.map((operation) => ({
       ...operation,
       amount: Number(operation.amount),
       createdAt: operation.createdAt.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
     }));
 
-    return timeAdjustedOperations;
+    return formattedOperations;
   };
 }

@@ -37,7 +37,7 @@ export default class OrderService {
       include: { asset: true },
     });
 
-    if (!userAsset) throw new HttpError(404, 'Ativo não consta na carteira.');
+    if (!userAsset || userAsset.quantity === 0) throw new HttpError(404, 'Ativo não consta na carteira.');
     if (userAsset.quantity < amount) throw new HttpError(422, 'Quantidade insuficiente na carteira.');
 
     // A execução de uma ordem impacta nas 3 tabelas, sendo necessária uma transaction

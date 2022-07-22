@@ -12,7 +12,7 @@ Projeto desenvolvido para o processo seletivo para Software Engineer I na XP Inc
 
 - [💻 Projeto](#-projeto)
   - [Entregas](#entregas)
-- [� Requisitos e Regras de Negócio](#-requisitos-e-regras-de-negócio)
+- [📈 Requisitos e Regras de Negócio](#-requisitos-e-regras-de-negócio)
   - [Implementações adicionais](#implementações-adicionais)
 - [🚀 Tecnologias e Ferramentas](#-tecnologias-e-ferramentas)
 - [⚡ Rodando o projeto localmente](#-rodando-o-projeto-localmente)
@@ -63,6 +63,7 @@ Portanto, os endpoints foram definidos como:
 - `POST /order/sell` para executar a venda de um ativo;
   - Sendo validado que a quantidade não pode ser maior que o disponível na carteira;
   - (*Adicional*) Aumentando o saldo em conta da pessoa usuária;
+- (*Adicional*) `GET /operations` para retornar o extrato com a movimentação da conta.
 
 ### Implementações adicionais
 
@@ -74,8 +75,8 @@ Portanto, os endpoints foram definidos como:
 - Autenticação e autorização via JWT
 - Documentação da API no Swagger
 - CI/CD
-  - Lint e testes automatizados rodando com Github Actions a cada push;
-  - Pipeline com 3 ambientes, ocorrendo deploy automático em contêiner caso passe nas *actions*.
+  - Lint e testes automatizados rodando com Github Actions a cada *push*;
+  - Pipeline com 3 ambientes, ocorrendo deploy automático em contêiner somente caso passe nas *actions*.
 
 <br />
 
@@ -134,7 +135,7 @@ npm start
 ```bash
 npm run test //todos os testes
 npm run test:unit //somente testes unitários
-npm run test:integration //somente testes unitários
+npm run test:integration //somente testes de integração
 ``` 
 Caso deseje verificar a cobertura, basta inserir `:coverage` ao final do comando.
 

@@ -12,7 +12,7 @@ export default class LoginService {
       select: { id: true, email: true, password: true },
     });
 
-    if (!user) throw new HttpError(404, 'Usuário não cadastrado.');
+    if (!user) throw new HttpError(404, 'Pessoa usuária não cadastrada.');
 
     const match = await bcrypt.compare(loginData.password, user.password);
     if (!match) throw new HttpError(401, 'Senha incorreta.');

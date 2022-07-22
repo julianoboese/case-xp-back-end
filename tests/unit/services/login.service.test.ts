@@ -12,7 +12,7 @@ describe('The LoginService login function', () => {
 
     await expect(
       LoginService.login({ email: 'jane.doe@email.com', password: '12345678' }),
-    ).rejects.toThrow('Usuário não cadastrado.');
+    ).rejects.toThrow('Pessoa usuária não cadastrada.');
   });
 
   it('should throw an error if password is incorrect', async () => {

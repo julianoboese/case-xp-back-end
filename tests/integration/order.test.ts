@@ -16,12 +16,12 @@ describe('The POST /order/buy route', () => {
   it('requires authentication', async () => {
     const result = await request(server).post('/order/buy').send({
       assetId: 328,
-      amount: 100,
+      quantity: 100,
       price: 23.52,
     });
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -31,12 +31,12 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', 'q1w2e3r4t5')
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -50,12 +50,12 @@ describe('The POST /order/buy route', () => {
       .post('/order/buy')
       .set('Authorization', loginResult.body.token)
       .send({
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" is required');
   });
 
@@ -70,12 +70,12 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 'trezentos e vinte e oito',
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be a number');
   });
 
@@ -90,12 +90,12 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328.5,
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be an integer');
   });
 
@@ -110,16 +110,16 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: -328,
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be a positive number');
   });
 
-  it('validates that "amount" is required', async () => {
+  it('validates that "quantity" is required', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'ciclano.souza@email.com',
       password: '12345678',
@@ -134,11 +134,11 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
-    expect(result.body.message).toBe('"amount" is required');
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('"quantity" is required');
   });
 
-  it('validates that "amount" must be a number', async () => {
+  it('validates that "quantity" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'ciclano.souza@email.com',
       password: '12345678',
@@ -149,16 +149,16 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 'cem',
+        quantity: 'cem',
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
-    expect(result.body.message).toBe('"amount" must be a number');
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('"quantity" must be a number');
   });
 
-  it('validates that "amount" must be an integer', async () => {
+  it('validates that "quantity" must be an integer', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'ciclano.souza@email.com',
       password: '12345678',
@@ -169,16 +169,16 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100.5,
+        quantity: 100.5,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
-    expect(result.body.message).toBe('"amount" must be an integer');
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('"quantity" must be an integer');
   });
 
-  it('validates that "amount" must be positive', async () => {
+  it('validates that "quantity" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'ciclano.souza@email.com',
       password: '12345678',
@@ -189,13 +189,13 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: -100,
+        quantity: -100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
-    expect(result.body.message).toBe('"amount" must be a positive number');
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('"quantity" must be a positive number');
   });
 
   it('validates that "price" is required', async () => {
@@ -209,11 +209,11 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" is required');
   });
 
@@ -228,12 +228,12 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
         price: 'vinte e três e cinquenta e dois',
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" must be a number');
   });
 
@@ -248,13 +248,73 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
         price: -23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" must be a positive number');
+  });
+
+  it('returns an error if asset is unavailable at the broker', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/buy')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 1000,
+        quantity: 100,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(404);
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('Ativo indisponível na corretora.');
+  });
+
+  it('returns an error if quantity is higher than available at the broker', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/buy')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 328,
+        quantity: 10000000000,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(422);
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('Quantidade indisponível na corretora.');
+  });
+
+  it('returns an error if user doesn\'t have enough funds', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/buy')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 328,
+        quantity: 100000,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(422);
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('Saldo insuficiente.');
   });
 
   it('returns the user new position and changes balance if the request is successful', async () => {
@@ -277,7 +337,7 @@ describe('The POST /order/buy route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
@@ -309,12 +369,12 @@ describe('The POST /order/sell route', () => {
   it('requires authentication', async () => {
     const result = await request(server).post('/order/sell').send({
       assetId: 328,
-      amount: 100,
+      quantity: 100,
       price: 23.52,
     });
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -324,12 +384,12 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', 'q1w2e3r4t5')
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -343,12 +403,12 @@ describe('The POST /order/sell route', () => {
       .post('/order/sell')
       .set('Authorization', loginResult.body.token)
       .send({
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" is required');
   });
 
@@ -363,12 +423,12 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 'trezentos e vinte e oito',
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be a number');
   });
 
@@ -383,12 +443,12 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328.5,
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be an integer');
   });
 
@@ -403,16 +463,16 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: -328,
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be a positive number');
   });
 
-  it('validates that "amount" is required', async () => {
+  it('validates that "quantity" is required', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'ciclano.souza@email.com',
       password: '12345678',
@@ -427,11 +487,11 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
-    expect(result.body.message).toBe('"amount" is required');
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('"quantity" is required');
   });
 
-  it('validates that "amount" must be a number', async () => {
+  it('validates that "quantity" must be a number', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'ciclano.souza@email.com',
       password: '12345678',
@@ -442,16 +502,16 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 'cem',
+        quantity: 'cem',
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
-    expect(result.body.message).toBe('"amount" must be a number');
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('"quantity" must be a number');
   });
 
-  it('validates that "amount" must be an integer', async () => {
+  it('validates that "quantity" must be an integer', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'ciclano.souza@email.com',
       password: '12345678',
@@ -462,16 +522,16 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100.5,
+        quantity: 100.5,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
-    expect(result.body.message).toBe('"amount" must be an integer');
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('"quantity" must be an integer');
   });
 
-  it('validates that "amount" must be positive', async () => {
+  it('validates that "quantity" must be positive', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'ciclano.souza@email.com',
       password: '12345678',
@@ -482,13 +542,13 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: -100,
+        quantity: -100,
         price: 23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
-    expect(result.body.message).toBe('"amount" must be a positive number');
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('"quantity" must be a positive number');
   });
 
   it('validates that "price" is required', async () => {
@@ -502,11 +562,11 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" is required');
   });
 
@@ -521,12 +581,12 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
         price: 'vinte e três e cinquenta e dois',
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" must be a number');
   });
 
@@ -541,13 +601,53 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
         price: -23.52,
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" must be a positive number');
+  });
+
+  it('returns an error if user doesn\'t have the asset', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/sell')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 1,
+        quantity: 100,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(404);
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('Ativo não consta na carteira.');
+  });
+
+  it('returns an error if amount is higher than user has', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/sell')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 328,
+        quantity: 1000,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(422);
+    expect(result.body.quantity).toBeUndefined();
+    expect(result.body.message).toBe('Quantidade insuficiente na carteira.');
   });
 
   it('returns the user new position and changes balance if the request is successful', async () => {
@@ -569,7 +669,7 @@ describe('The POST /order/sell route', () => {
       .set('Authorization', loginResult.body.token)
       .send({
         assetId: 328,
-        amount: 100,
+        quantity: 100,
         price: 23.52,
       });
 

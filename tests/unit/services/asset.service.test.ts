@@ -105,7 +105,7 @@ describe('The AssetService getAsset function', () => {
     );
   });
 
-  it("should return the asset if the user doesn't own it", async () => {
+  it("should return the asset if the user doesn't have it", async () => {
     const assetMock = {
       id: 3,
       ticker: 'CASH3',
@@ -132,7 +132,7 @@ describe('The AssetService getAsset function', () => {
     expect(assets).toEqual(expectedReturn);
   });
 
-  it('should return the user asset if he owns it', async () => {
+  it('should return the user asset if he has it', async () => {
     const assetMock = {
       userId: 1,
       assetId: 1,

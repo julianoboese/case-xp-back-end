@@ -3,7 +3,7 @@ import OrderService from '../../../src/services/order.service';
 import OrderController from '../../../src/controllers/order.controller';
 
 describe('The OrderController buyAsset function', () => {
-  const requestMock = { body: { amount: 100 } };
+  const requestMock = { body: { quantity: 100 } };
   const responseMock = {
     locals: { user: { id: 1 } },
     status: jest.fn(),
@@ -47,7 +47,7 @@ describe('The OrderController buyAsset function', () => {
 });
 
 describe('The OrderController sellAsset function', () => {
-  const requestMock = { body: { amount: 100 } };
+  const requestMock = { body: { quantity: 100 } };
   const responseMock = {
     locals: { user: { id: 1 } },
     status: jest.fn(),

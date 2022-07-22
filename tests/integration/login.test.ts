@@ -86,8 +86,8 @@ describe('The POST /login route', () => {
     });
 
     expect(result.statusCode).toBe(404);
-    expect(result.body.token).not.toBeDefined();
-    expect(result.body.message).toBe('Usuário não cadastrado.');
+    expect(result.body.token).toBeUndefined();
+    expect(result.body.message).toBe('Pessoa usuária não cadastrada.');
   });
 
   it('returns an error if password is wrong', async () => {
@@ -97,7 +97,7 @@ describe('The POST /login route', () => {
     });
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.token).not.toBeDefined();
+    expect(result.body.token).toBeUndefined();
     expect(result.body.message).toBe('Senha incorreta.');
   });
 

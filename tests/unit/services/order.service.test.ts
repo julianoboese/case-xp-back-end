@@ -11,7 +11,7 @@ describe('The OrderService buyAsset function', () => {
     const order = {
       userId: 1,
       assetId: 1000000000,
-      amount: 100,
+      quantity: 100,
       price: 25.56,
     };
 
@@ -33,7 +33,7 @@ describe('The OrderService buyAsset function', () => {
     const order = {
       userId: 1,
       assetId: 1,
-      amount: 1100,
+      quantity: 1100,
       price: 25.56,
     };
 
@@ -62,7 +62,7 @@ describe('The OrderService buyAsset function', () => {
     const order = {
       userId: 1,
       assetId: 1,
-      amount: 100,
+      quantity: 100,
       price: 25.56,
     };
 
@@ -99,7 +99,7 @@ describe('The OrderService buyAsset function', () => {
     const order = {
       userId: 1,
       assetId: 3,
-      amount: 100,
+      quantity: 100,
       price: 25.56,
     };
 
@@ -129,7 +129,7 @@ describe('The OrderService buyAsset function', () => {
     const order = {
       userId: 1,
       assetId: 1,
-      amount: 100,
+      quantity: 100,
       price: 25.56,
     };
 
@@ -142,13 +142,13 @@ describe('The OrderService buyAsset function', () => {
 describe('The OrderService sellAsset function', () => {
   afterEach(() => jest.clearAllMocks());
 
-  it("should throw an error if user doesn't own the asset", async () => {
+  it("should throw an error if user doesn't have the asset", async () => {
     prismaMock.userAsset.findUnique.mockResolvedValue(null);
 
     const order = {
       userId: 1,
       assetId: 1,
-      amount: 100,
+      quantity: 100,
       price: 25.56,
     };
 
@@ -169,7 +169,7 @@ describe('The OrderService sellAsset function', () => {
     const order = {
       userId: 1,
       assetId: 1,
-      amount: 200,
+      quantity: 200,
       price: 25.56,
     };
 
@@ -198,7 +198,7 @@ describe('The OrderService sellAsset function', () => {
     const order = {
       userId: 1,
       assetId: 1,
-      amount: 100,
+      quantity: 100,
       price: 25.56,
     };
 

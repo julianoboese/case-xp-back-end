@@ -5,6 +5,7 @@ import loginRoutes from './login.routes';
 import orderRoutes from './order.routes';
 import registerRoutes from './register.routes';
 import userRoutes from './user.routes';
+import operationRoutes from './operation.routes';
 
 const routes: Router[] = [
   loginRoutes.routes(),
@@ -13,6 +14,7 @@ const routes: Router[] = [
   accountRoutes.routes(),
   assetRoutes.routes(),
   orderRoutes.routes(),
+  operationRoutes.routes(),
 ];
 
 export default routes;

@@ -7,7 +7,16 @@
   },
   "servers":[
     {
-      "url": "https://case-xp-back-end.herokuapp.com"
+      "url": "https://case-xp-back-end.herokuapp.com",
+      "description": "production"
+    },
+    {
+      "url": "https://case-xp-back-end-staging.herokuapp.com",
+      "description": "staging"
+    },
+    {
+      "url": "https://case-xp-back-end-development.herokuapp.com",
+      "description": "development"
     }
   ],
   "components": {
@@ -21,6 +30,10 @@
           "password": {
             "type": "string"
           }
+        },
+        "example": {
+          "email": "fulano.silva@email.com",
+          "password": "12345678"
         }
       },
       "register": {
@@ -38,6 +51,12 @@
           "password": {
             "type": "string"
           }
+        },
+        "example": {
+          "firstName": "Ciclano",
+          "lastName": "Ferreira",
+          "email": "beltrano.ferreira@email.com",
+          "password": "12345678"
         }
       },
       "token": {
@@ -46,6 +65,9 @@
           "token": {
             "type": "string"
           }
+        },
+        "example": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJmdWxhbm8uc2lsdmFAZW1haWwuY29tIiwiaWF0IjoxNjU4NDA3MTAzLCJleHAiOjE2NTg0MDgwMDN9.85VmK2J7YQPQ9yX4iYt5ISyZjxhbfTTpbulIybyNwmQ"
         }
       },
       "user": {
@@ -57,6 +79,10 @@
           "lastName": {
             "type": "string"
           }
+        },
+        "example": {
+          "firstName": "Fulano",
+          "lastName": "Silva"
         }
       },
       "balance": {
@@ -68,6 +94,10 @@
           "balance": {
             "type": "number"
           }
+        },
+        "example": {
+          "id": 1,
+          "balance": 1000
         }
       },
       "account": {
@@ -76,6 +106,9 @@
           "amount": {
             "type": "number"
           }
+        },
+        "example": {
+          "amount": 100.25
         }
       },
       "allAssets": {
@@ -93,7 +126,19 @@
               "type": "string"
             }
           }
-        }
+        },
+        "example": [
+          {
+            "id": 1,
+            "ticker": "RRRP3",
+            "name": "3R Petroleum"
+          },
+          {
+            "id": 2,
+            "ticker": "TTEN3",
+            "name": "3tentos"
+          }
+        ]
       },
       "assets": {
         "type": "array",
@@ -119,7 +164,25 @@
               "type": "number"
             }
           }
-        }
+        },
+        "example": [
+          {
+            "userId": 1,
+            "assetId": 42,
+            "ticker": "AMBP3",
+            "quantity": 100,
+            "price": 25.34,
+            "change": 2.26
+          },
+          {
+            "userId": 1,
+            "assetId": 407,
+            "ticker": "PRIO3",
+            "quantity": 200,
+            "price": 22.26,
+            "change": -0.58
+          }
+        ]
       },
       "asset": {
         "type": "object",
@@ -142,6 +205,14 @@
           "change": {
             "type": "number"
           }
+        },
+        "example": {
+          "userId": 1,
+          "assetId": 407,
+          "ticker": "PRIO3",
+          "quantity": 200,
+          "price": 22.26,
+          "change": -0.58
         }
       },
       "order": {
@@ -150,12 +221,17 @@
           "assetId": {
             "type": "number"
           },
-          "amount": {
+          "quantity": {
             "type": "number"
           },
           "price": {
             "type": "number"
           }
+        },
+        "example": {
+          "assetId": 348,
+          "quantity": 100,
+          "price": 1.85
         }
       },
       "position": {
@@ -170,7 +246,66 @@
           "quantity": {
             "type": "number"
           }
+        },
+        "example": {
+          "userId": 1,
+          "assetId": 348,
+          "quantity": 100
         }
+      },
+      "operation": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "userId": {
+              "type": "number"
+            },
+            "type": {
+              "type": "string"
+            },
+            "assetId": {
+              "type": "number"
+            },
+            "quantity": {
+              "type": "number"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "ticker": {
+              "type": "string"
+            }
+          }
+        },
+        "example": [
+          {
+            "id": 4,
+            "userId": 1,
+            "type": "DEPOSIT",
+            "assetId": null,
+            "quantity": null,
+            "amount": 5000,
+            "createdAt": "22/07/2022 16:19:00",
+            "ticker": null
+          },
+          {
+            "id": 6,
+            "userId": 1,
+            "type": "BUY",
+            "assetId": 328,
+            "quantity": 100,
+            "amount": -5000,
+            "createdAt": "22/07/2022 16:21:13",
+            "ticker": "RENT3"
+          }
+        ]
       }
     },
     "securitySchemes": {
@@ -192,19 +327,23 @@
     },
     {
       "name": "user",
-      "description": "Operations relacionadas à pessoa usuária."
+      "description": "Operações relacionadas à pessoa usuária."
     },
     {
       "name": "account",
-      "description": "Operations relacionadas à conta digital."
+      "description": "Operações relacionadas à conta digital."
     },
     {
       "name": "asset",
-      "description": "Operations relacionadas a ativos."
+      "description": "Operações relacionadas a ativos."
     },
     {
       "name": "order",
-      "description": "Operations relacionadas a ordens de compra e venda de ativos."
+      "description": "Operações relacionadas a ordens de compra e venda de ativos."
+    },
+    {
+      "name": "operation",
+      "description": "Operações relacionadas ao extrato da conta."
     }
   ],
   "paths": {
@@ -240,7 +379,7 @@
             "description": "Unauthorized. Senha incorreta."
           },
           "404": {
-            "description": "Not Found. Usuário não cadastrado."
+            "description": "Not Found. Pessoa usuária não cadastrada."
           }
         }
       }
@@ -274,7 +413,7 @@
             "description": "Bad Request. Dados inseridos incorretamente."
           },
           "409": {
-            "description": "Conflict. Usuário já possui conta."
+            "description": "Conflict. Pessoa usuária já possui conta."
           }
         }
       }
@@ -300,6 +439,9 @@
           },
           "401": {
             "description": "Unauthorized. Acesso não autorizado."
+          },
+          "404": {
+            "description": "Not Found. Pessoa usuária não encontrada."
           }
         }
       }
@@ -362,6 +504,9 @@
           },
           "401": {
             "description": "Unauthorized. Acesso não autorizado."
+          },
+          "404": {
+            "description": "Not Found. Pessoa usuária não encontrada."
           }
         }
       }
@@ -574,6 +719,31 @@
           },
           "422": {
             "description": "Unprocessable Entity. Quantidade insuficiente na carteira."
+          }
+        }
+      }
+    },
+    "/operations": {
+      "get": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Verificar extrato da conta",
+        "description": "Retorna extrato com todas as operações efetuadas.",
+        "tags": ["operation"],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/operation"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Acesso não autorizado."
           }
         }
       }

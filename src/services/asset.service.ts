@@ -66,7 +66,6 @@ export default class AssetService {
 
     const { quantity, asset } = userAsset;
     const { ticker } = asset;
-
     const { price, change } = await AssetInfo.fetchAssetInfo(ticker);
 
     return { userId, assetId, ticker, quantity, price, change };

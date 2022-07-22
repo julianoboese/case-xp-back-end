@@ -23,7 +23,7 @@ describe('The RegisterService register function', () => {
     };
 
     await expect(RegisterService.register(registerData))
-      .rejects.toThrow('Usuário já possui conta.');
+      .rejects.toThrow('Pessoa usuária já possui conta.');
   });
 
   it('should return a token if register data is valid', async () => {

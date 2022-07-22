@@ -229,6 +229,22 @@ describe('The POST /account/withdraw route', () => {
     expect(result.body.message).toBe('"amount" must be a positive number');
   });
 
+  it('returns an error if user doesn\'t have enough funds', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/account/withdraw')
+      .set('Authorization', loginResult.body.token)
+      .send({ amount: 100000 });
+
+    expect(result.statusCode).toBe(422);
+    expect(result.body.balance).toBeUndefined();
+    expect(result.body.message).toBe('Saldo insuficiente.');
+  });
+
   it('returns the user new balance if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'fulano.silva@email.com',

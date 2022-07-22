@@ -13,7 +13,7 @@ export default class RegisterService {
       select: { id: true, email: true },
     });
 
-    if (user) throw new HttpError(409, 'Usuário já possui conta.');
+    if (user) throw new HttpError(409, 'Pessoa usuária já possui conta.');
 
     const hashPassword = await bcrypt.hash(password, 5);
     const createdUser = await prisma.user.create({

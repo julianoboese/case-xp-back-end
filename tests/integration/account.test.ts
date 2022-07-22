@@ -241,7 +241,7 @@ describe('The POST /account/withdraw route', () => {
       .send({ amount: 100000 });
 
     expect(result.statusCode).toBe(422);
-    expect(result.body.token).not.toBeDefined();
+    expect(result.body.balance).toBeUndefined();
     expect(result.body.message).toBe('Saldo insuficiente.');
   });
 

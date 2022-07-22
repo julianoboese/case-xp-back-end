@@ -21,7 +21,7 @@ describe('The POST /order/buy route', () => {
     });
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -36,7 +36,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -55,7 +55,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" is required');
   });
 
@@ -75,7 +75,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be a number');
   });
 
@@ -95,7 +95,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be an integer');
   });
 
@@ -115,7 +115,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be a positive number');
   });
 
@@ -134,7 +134,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"quantity" is required');
   });
 
@@ -154,7 +154,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"quantity" must be a number');
   });
 
@@ -174,7 +174,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"quantity" must be an integer');
   });
 
@@ -194,7 +194,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"quantity" must be a positive number');
   });
 
@@ -213,7 +213,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" is required');
   });
 
@@ -233,7 +233,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" must be a number');
   });
 
@@ -253,7 +253,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" must be a positive number');
   });
 
@@ -273,7 +273,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(404);
-    expect(result.body.token).not.toBeDefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Ativo indisponível na corretora.');
   });
 
@@ -293,7 +293,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(422);
-    expect(result.body.token).not.toBeDefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Quantidade indisponível na corretora.');
   });
 
@@ -313,7 +313,7 @@ describe('The POST /order/buy route', () => {
       });
 
     expect(result.statusCode).toBe(422);
-    expect(result.body.token).not.toBeDefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Saldo insuficiente.');
   });
 
@@ -374,7 +374,7 @@ describe('The POST /order/sell route', () => {
     });
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -389,7 +389,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -408,7 +408,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" is required');
   });
 
@@ -428,7 +428,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be a number');
   });
 
@@ -448,7 +448,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be an integer');
   });
 
@@ -468,7 +468,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"assetId" must be a positive number');
   });
 
@@ -487,7 +487,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"quantity" is required');
   });
 
@@ -507,7 +507,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"quantity" must be a number');
   });
 
@@ -527,7 +527,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"quantity" must be an integer');
   });
 
@@ -547,7 +547,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"quantity" must be a positive number');
   });
 
@@ -566,7 +566,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" is required');
   });
 
@@ -586,7 +586,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" must be a number');
   });
 
@@ -606,7 +606,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(400);
-    expect(result.body.balance).toBeUndefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('"price" must be a positive number');
   });
 
@@ -626,7 +626,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(404);
-    expect(result.body.token).not.toBeDefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Ativo não consta na carteira.');
   });
 
@@ -646,7 +646,7 @@ describe('The POST /order/sell route', () => {
       });
 
     expect(result.statusCode).toBe(422);
-    expect(result.body.token).not.toBeDefined();
+    expect(result.body.quantity).toBeUndefined();
     expect(result.body.message).toBe('Quantidade insuficiente na carteira.');
   });
 

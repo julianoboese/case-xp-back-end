@@ -17,7 +17,7 @@ describe('The GET /assets/all route', () => {
     const result = await request(server).get('/assets/all');
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.firstName).toBeUndefined();
+    expect(result.body.ticker).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -27,7 +27,7 @@ describe('The GET /assets/all route', () => {
       .set('Authorization', 'q1w2e3r4t5');
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.firstName).toBeUndefined();
+    expect(result.body.ticker).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -68,7 +68,7 @@ describe('The GET /assets route', () => {
     const result = await request(server).get('/assets');
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.firstName).toBeUndefined();
+    expect(result.body.ticker).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -78,7 +78,7 @@ describe('The GET /assets route', () => {
       .set('Authorization', 'q1w2e3r4t5');
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.firstName).toBeUndefined();
+    expect(result.body.ticker).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -127,7 +127,7 @@ describe('The GET /assets/{assetId} route', () => {
     const result = await request(server).get('/assets/407');
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.firstName).toBeUndefined();
+    expect(result.body.ticker).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
@@ -137,7 +137,7 @@ describe('The GET /assets/{assetId} route', () => {
       .set('Authorization', 'q1w2e3r4t5');
 
     expect(result.statusCode).toBe(401);
-    expect(result.body.firstName).toBeUndefined();
+    expect(result.body.ticker).toBeUndefined();
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 

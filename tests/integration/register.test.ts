@@ -180,7 +180,7 @@ describe('The POST /register route', () => {
     });
 
     expect(result.statusCode).toBe(409);
-    expect(result.body.token).not.toBeDefined();
+    expect(result.body.token).toBeUndefined();
     expect(result.body.message).toBe('Pessoa usuária já possui conta.');
   });
 

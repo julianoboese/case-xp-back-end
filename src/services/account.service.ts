@@ -1,3 +1,4 @@
+import { Type } from '@prisma/client';
 import IBalance from '../interfaces/balance.interface';
 import prisma from '../prisma';
 import HttpError from '../utils/http.error';
@@ -22,6 +23,12 @@ export default class AccountService {
         balance: {
           increment: amount,
         },
+        operations: {
+          create: {
+            type: Type.DEPOSIT,
+            amount,
+          },
+        },
       },
     });
 
@@ -41,6 +48,12 @@ export default class AccountService {
       data: {
         balance: {
           decrement: amount,
+        },
+        operations: {
+          create: {
+            type: Type.WITHDRAW,
+            amount: -amount,
+          },
         },
       },
     });

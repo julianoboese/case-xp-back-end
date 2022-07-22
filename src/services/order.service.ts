@@ -1,4 +1,4 @@
-import { UserAsset } from '@prisma/client';
+import { Type, UserAsset } from '@prisma/client';
 import IOrder from '../interfaces/order.interface';
 import prisma from '../prisma';
 import HttpError from '../utils/http.error';
@@ -25,6 +25,9 @@ export default class OrderService {
         data: { quantity: { decrement: amount } } }),
       prisma.user.update({ where: { id: userId },
         data: { balance: { decrement: price * amount } } }),
+      prisma.operation.create({
+        data: { userId, assetId, type: Type.BUY, quantity: amount, amount: -price * amount },
+      }),
     ]);
 
     return position;
@@ -48,6 +51,9 @@ export default class OrderService {
         data: { quantity: { increment: amount } } }),
       prisma.user.update({ where: { id: userId },
         data: { balance: { increment: price * amount } } }),
+      prisma.operation.create({
+        data: { userId, assetId, type: Type.SELL, quantity: amount, amount: price * amount },
+      }),
     ]);
 
     return position;

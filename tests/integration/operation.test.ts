@@ -37,6 +37,11 @@ describe('The GET /operations route', () => {
       password: '12345678',
     });
 
+    await request(server)
+      .post('/account/deposit')
+      .set('Authorization', loginResult.body.token)
+      .send({ amount: 1000 });
+
     const result = await request(server)
       .get('/operations')
       .set('Authorization', loginResult.body.token);
@@ -47,11 +52,22 @@ describe('The GET /operations route', () => {
         expect.objectContaining({
           id: expect.any(Number),
           userId: 1,
+          type: 'DEPOSIT',
+          assetId: null,
+          quantity: null,
+          amount: expect.any(Number),
+          createdAt: expect.any(String),
+          ticker: null,
+        }),
+        expect.objectContaining({
+          id: expect.any(Number),
+          userId: 1,
           type: 'BUY',
           assetId: 407,
           quantity: expect.any(Number),
           amount: expect.any(Number),
           createdAt: expect.any(String),
+          ticker: expect.any(String),
         }),
       ]),
     );

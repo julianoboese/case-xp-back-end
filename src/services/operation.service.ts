@@ -7,11 +7,26 @@ export default class OperationService {
       where: { userId: id },
     });
 
-    const formattedOperations = operations.map((operation) => ({
-      ...operation,
-      amount: Number(operation.amount),
-      createdAt: operation.createdAt.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
-    }));
+    const formattedOperations = Promise.all(
+      operations.map(async (operation) => {
+        let asset;
+        if (operation.assetId) {
+          asset = await prisma.asset.findUnique({
+            where: { id: operation.assetId },
+            select: { ticker: true },
+          });
+        }
+
+        return {
+          ...operation,
+          ticker: asset?.ticker || null,
+          amount: Number(operation.amount),
+          createdAt: operation.createdAt.toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo',
+          }),
+        };
+      }),
+    );
 
     return formattedOperations;
   };

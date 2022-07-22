@@ -20,6 +20,7 @@ describe('The OperationController getOperations function', () => {
       type: Type.DEPOSIT,
       amount: 4000,
       createdAt: '22/07/2022 16:19:40',
+      ticker: null,
     },
     {
       id: 1,
@@ -29,6 +30,7 @@ describe('The OperationController getOperations function', () => {
       quantity: 100,
       amount: -2300.52,
       createdAt: '22/07/2022 16:19:43',
+      ticker: 'RRRP3',
     },
   ];
 

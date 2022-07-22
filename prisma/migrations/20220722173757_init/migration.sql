@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "Type" AS ENUM ('DEPOSIT', 'WITHDRAW', 'BUY', 'SELL');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
@@ -30,6 +33,19 @@ CREATE TABLE "UserAsset" (
     CONSTRAINT "UserAsset_pkey" PRIMARY KEY ("userId","assetId")
 );
 
+-- CreateTable
+CREATE TABLE "Operation" (
+    "id" SERIAL NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "type" "Type" NOT NULL,
+    "assetId" INTEGER,
+    "quantity" INTEGER,
+    "amount" DECIMAL(16,2) NOT NULL DEFAULT 0,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Operation_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
@@ -41,3 +57,9 @@ ALTER TABLE "UserAsset" ADD CONSTRAINT "UserAsset_userId_fkey" FOREIGN KEY ("use
 
 -- AddForeignKey
 ALTER TABLE "UserAsset" ADD CONSTRAINT "UserAsset_assetId_fkey" FOREIGN KEY ("assetId") REFERENCES "Asset"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Operation" ADD CONSTRAINT "Operation_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Operation" ADD CONSTRAINT "Operation_assetId_fkey" FOREIGN KEY ("assetId") REFERENCES "Asset"("id") ON DELETE SET NULL ON UPDATE CASCADE;

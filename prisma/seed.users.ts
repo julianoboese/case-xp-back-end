@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Type } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -29,6 +29,30 @@ async function seedUsers() {
         },
       ],
     },
+    operations: {
+      create: [
+        {
+          type: Type.BUY,
+          quantity: 200,
+          amount: -4000,
+          asset: {
+            connect: {
+              ticker: 'PRIO3',
+            },
+          },
+        },
+        {
+          type: Type.BUY,
+          quantity: 100,
+          amount: -2300,
+          asset: {
+            connect: {
+              ticker: 'AMBP3',
+            },
+          },
+        },
+      ],
+    },
   } });
 
   await prisma.user.create({
@@ -49,6 +73,30 @@ async function seedUsers() {
           },
           {
             quantity: 300,
+            asset: {
+              connect: {
+                ticker: 'CASH3',
+              },
+            },
+          },
+        ],
+      },
+      operations: {
+        create: [
+          {
+            type: Type.BUY,
+            quantity: 100,
+            amount: -5000,
+            asset: {
+              connect: {
+                ticker: 'RENT3',
+              },
+            },
+          },
+          {
+            type: Type.BUY,
+            quantity: 300,
+            amount: -600,
             asset: {
               connect: {
                 ticker: 'CASH3',

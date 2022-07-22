@@ -9,6 +9,7 @@ export default class OperationService {
 
     const timeAdjustedOperations = operations.map((operation) => ({
       ...operation,
+      amount: Number(operation.amount),
       createdAt: operation.createdAt.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
     }));
 

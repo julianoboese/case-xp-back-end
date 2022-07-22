@@ -257,6 +257,66 @@ describe('The POST /order/buy route', () => {
     expect(result.body.message).toBe('"price" must be a positive number');
   });
 
+  it('returns an error if asset is unavailable at the broker', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/buy')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 1000,
+        amount: 100,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(404);
+    expect(result.body.token).not.toBeDefined();
+    expect(result.body.message).toBe('Ativo indisponível na corretora.');
+  });
+
+  it('returns an error if amount is higher than available at the broker', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/buy')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 328,
+        amount: 10000000000,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(422);
+    expect(result.body.token).not.toBeDefined();
+    expect(result.body.message).toBe('Quantidade indisponível na corretora.');
+  });
+
+  it('returns an error if user doesn\'t have enough funds', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/buy')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 328,
+        amount: 100000,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(422);
+    expect(result.body.token).not.toBeDefined();
+    expect(result.body.message).toBe('Saldo insuficiente.');
+  });
+
   it('returns the user new position and changes balance if the request is successful', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'ciclano.souza@email.com',
@@ -548,6 +608,46 @@ describe('The POST /order/sell route', () => {
     expect(result.statusCode).toBe(400);
     expect(result.body.balance).toBeUndefined();
     expect(result.body.message).toBe('"price" must be a positive number');
+  });
+
+  it('returns an error if user doesn\'t have the asset', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/sell')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 1,
+        amount: 100,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(404);
+    expect(result.body.token).not.toBeDefined();
+    expect(result.body.message).toBe('Ativo não consta na carteira.');
+  });
+
+  it('returns an error if amount is higher than user has', async () => {
+    const loginResult = await request(server).post('/login').send({
+      email: 'ciclano.souza@email.com',
+      password: '12345678',
+    });
+
+    const result = await request(server)
+      .post('/order/sell')
+      .set('Authorization', loginResult.body.token)
+      .send({
+        assetId: 328,
+        amount: 1000,
+        price: 23.52,
+      });
+
+    expect(result.statusCode).toBe(422);
+    expect(result.body.token).not.toBeDefined();
+    expect(result.body.message).toBe('Quantidade insuficiente na carteira.');
   });
 
   it('returns the user new position and changes balance if the request is successful', async () => {

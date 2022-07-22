@@ -15,7 +15,9 @@ export default class OrderService {
     const { balance } = await AccountService.getBalance(userId);
     if (Number(balance) < price * amount) throw new HttpError(422, 'Saldo insuficiente.');
 
+    // A execução de uma ordem impacta nas 3 tabelas, sendo necessária uma transaction
     const [position] = await prisma.$transaction([
+      // caso a PK já exista, "upsert" atualiza a posição, caso contrário cria uma nova linha
       prisma.userAsset.upsert({ where: { userId_assetId: { userId, assetId } },
         update: { quantity: { increment: amount } },
         create: { userId, assetId, quantity: amount } }),
@@ -38,6 +40,7 @@ export default class OrderService {
     if (!userAsset) throw new HttpError(404, 'Ativo não consta na carteira.');
     if (userAsset.quantity < amount) throw new HttpError(422, 'Quantidade insuficiente na carteira.');
 
+    // A execução de uma ordem impacta nas 3 tabelas, sendo necessária uma transaction
     const [position] = await prisma.$transaction([
       prisma.userAsset.update({ where: { userId_assetId: { userId, assetId } },
         data: { quantity: { decrement: amount } } }),

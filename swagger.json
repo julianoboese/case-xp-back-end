@@ -221,7 +221,7 @@
           "assetId": {
             "type": "number"
           },
-          "amount": {
+          "quantity": {
             "type": "number"
           },
           "price": {
@@ -230,7 +230,7 @@
         },
         "example": {
           "assetId": 348,
-          "amount": 100,
+          "quantity": 100,
           "price": 1.85
         }
       },

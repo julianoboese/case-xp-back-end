@@ -142,7 +142,7 @@ describe('The OrderService buyAsset function', () => {
 describe('The OrderService sellAsset function', () => {
   afterEach(() => jest.clearAllMocks());
 
-  it("should throw an error if user doesn't own the asset", async () => {
+  it("should throw an error if user doesn't have the asset", async () => {
     prismaMock.userAsset.findUnique.mockResolvedValue(null);
 
     const order = {

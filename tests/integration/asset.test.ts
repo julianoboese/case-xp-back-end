@@ -141,7 +141,7 @@ describe('The GET /assets/{assetId} route', () => {
     expect(result.body.message).toBe('Acesso não autorizado.');
   });
 
-  it('returns a specific asset if the user owns it', async () => {
+  it('returns a specific asset if the user has it', async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'fulano.silva@email.com',
       password: '12345678',
@@ -176,7 +176,7 @@ describe('The GET /assets/{assetId} route', () => {
     expect(result.body.message).toBe('Ativo indisponível na corretora.');
   });
 
-  it("returns a specific asset from the broker if the user doesn't own it", async () => {
+  it("returns a specific asset from the broker if the user doesn't have it", async () => {
     const loginResult = await request(server).post('/login').send({
       email: 'fulano.silva@email.com',
       password: '12345678',

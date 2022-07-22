@@ -11,7 +11,7 @@ export default class AccountService {
 
     if (!balance) throw new HttpError(404, 'Pessoa usuária não encontrada.');
 
-    return { id: balance.id, balance: Number(balance.balance) } as IBalance;
+    return { id, balance: Number(balance.balance) };
   };
 
   public static deposit = async (id: number, amount: number): Promise<IBalance> => {
@@ -25,11 +25,12 @@ export default class AccountService {
       },
     });
 
-    return { id: newBalance.id, balance: Number(newBalance.balance) };
+    return { id, balance: Number(newBalance.balance) };
   };
 
   public static withdraw = async (id: number, amount: number): Promise<IBalance> => {
     const currentBalance = await AccountService.getBalance(id);
+
     if (Number(currentBalance.balance) < amount) {
       throw new HttpError(422, 'Saldo insuficiente.');
     }
@@ -44,6 +45,6 @@ export default class AccountService {
       },
     });
 
-    return { id: newBalance.id, balance: Number(newBalance.balance) };
+    return { id, balance: Number(newBalance.balance) };
   };
 }

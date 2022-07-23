@@ -2,7 +2,7 @@
 // https://www.prisma.io/docs/guides/testing/unit-testing
 import { PrismaClient } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
-import prisma from '../src/prisma';
+import prisma from '../../src/prisma';
 
 jest.mock('../src/prisma', () => ({
   __esModule: true,

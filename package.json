@@ -12,12 +12,12 @@
     "prestart": "prisma migrate deploy",
     "start": "node dist/src/server.js",
     "dev": "nodemon --watch \"./src/**\" --ext \"ts,js\" --exec \"ts-node src/server.ts\"",
-    "test:unit": "jest --testPathPattern=tests/unit",
-    "test:unit:coverage": "jest --coverage --testPathPattern=tests/unit",
-    "test:integration": "prisma migrate reset --force && ts-node ./prisma/seed.ts && jest --testPathPattern=tests/integration && prisma migrate reset --force && ts-node ./prisma/seed.ts",
-    "test:integration:coverage": "prisma migrate reset --force && ts-node ./prisma/seed.ts && jest --coverage --testPathPattern=tests/integration && prisma migrate reset --force && ts-node ./prisma/seed.ts",
-    "test": "prisma migrate reset --force && ts-node ./prisma/seed.ts && jest --testPathPattern=tests && prisma migrate reset --force && ts-node ./prisma/seed.ts",
-    "test:coverage": "prisma migrate reset --force && ts-node ./prisma/seed.ts && jest --coverage --testPathPattern=tests && prisma migrate reset --force && ts-node ./prisma/seed.ts"
+    "test:unit": "jest -i --testPathPattern=tests/unit",
+    "test:unit:coverage": "jest -i --coverage --testPathPattern=tests/unit",
+    "test:integration": "prisma migrate reset --force && ts-node ./prisma/seed.ts && jest -i --testPathPattern=tests/integration && prisma migrate reset --force && ts-node ./prisma/seed.ts",
+    "test:integration:coverage": "prisma migrate reset --force && ts-node ./prisma/seed.ts && jest -i --coverage --testPathPattern=tests/integration && prisma migrate reset --force && ts-node ./prisma/seed.ts",
+    "test": "prisma migrate reset --force && ts-node ./prisma/seed.ts && jest -i --testPathPattern=tests && prisma migrate reset --force && ts-node ./prisma/seed.ts",
+    "test:coverage": "prisma migrate reset --force && ts-node ./prisma/seed.ts && jest -i --coverage --testPathPattern=tests && prisma migrate reset --force && ts-node ./prisma/seed.ts"
   },
   "keywords": [],
   "author": "",

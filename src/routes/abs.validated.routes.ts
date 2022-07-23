@@ -5,12 +5,10 @@ import ValidationMiddleware from '../middlewares/validation.middleware';
 import ARoutes from './abs.routes';
 
 export default abstract class AValidatedRoutes extends ARoutes {
-  public validation: IValidation;
+  public readonly validation: IValidation;
 
-  constructor(protected validator: ObjectSchema, router?: Router) {
+  constructor(validator: ObjectSchema, router?: Router) {
     super(router);
     this.validation = new ValidationMiddleware(validator);
   }
-
-  public abstract routes(): Router;
 }

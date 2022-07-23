@@ -6,7 +6,7 @@ import OperationService from '../../../src/services/operation.service';
 describe('The OperationService getOperations function', () => {
   afterEach(() => jest.clearAllMocks());
 
-  it('should return the user assets', async () => {
+  it('should return the operations', async () => {
     const operationsMock = [
       {
         id: 1,

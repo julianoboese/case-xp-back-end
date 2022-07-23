@@ -8,7 +8,7 @@ describe('The UserRoutes "routes" function', () => {
     get: jest.fn(),
   }));
 
-  it('should call the router method "get" with "/login" route', async () => {
+  it('should call the router method "get" with "/user" route', async () => {
     const routerMock = new RouterMock();
     const userRoutes = new UserRoutes(routerMock as Router);
     userRoutes.routes();

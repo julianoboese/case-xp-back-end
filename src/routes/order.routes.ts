@@ -2,9 +2,9 @@ import { Router } from 'express';
 import OrderController from '../controllers/order.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
 import orderValidator from '../validators/order.validator';
-import AValidatedRoutes from './abs.validated.routes';
+import ValidatedRoutes from './validated.routes';
 
-export class OrderRoutes extends AValidatedRoutes {
+export class OrderRoutes extends ValidatedRoutes {
   public routes(): Router {
     this.router.post(
       '/order/buy',

@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import RegisterController from '../controllers/register.controller';
 import registerValidator from '../validators/register.validator';
-import AValidatedRoutes from './abs.validated.routes';
+import ValidatedRoutes from './validated.routes';
 
-export class RegisterRoutes extends AValidatedRoutes {
+export class RegisterRoutes extends ValidatedRoutes {
   public routes(): Router {
     this.router.post(
       '/register',

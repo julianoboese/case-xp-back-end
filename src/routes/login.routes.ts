@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import LoginController from '../controllers/login.controller';
 import loginValidator from '../validators/login.validator';
-import AValidatedRoutes from './abs.validated.routes';
+import ValidatedRoutes from './validated.routes';
 
-export class LoginRoutes extends AValidatedRoutes {
+export class LoginRoutes extends ValidatedRoutes {
   public routes(): Router {
     this.router.post(
       '/login',

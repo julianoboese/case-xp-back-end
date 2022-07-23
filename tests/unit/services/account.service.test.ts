@@ -1,6 +1,6 @@
 import { Decimal } from '@prisma/client/runtime';
 import { User } from '@prisma/client';
-import prismaMock from '../../prisma.mock';
+import prismaMock from '../prisma.mock';
 import AccountService from '../../../src/services/account.service';
 
 describe('The AccountService getBalance function', () => {

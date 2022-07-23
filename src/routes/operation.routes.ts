@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import OperationController from '../controllers/operation.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
-import ARoutes from './abs.routes';
+import Routes from './routes';
 
-export class OperationRoutes extends ARoutes {
+export class OperationRoutes extends Routes {
   public routes(): Router {
     this.router.get(
       '/operations',

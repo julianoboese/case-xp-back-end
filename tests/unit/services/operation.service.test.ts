@@ -1,12 +1,12 @@
 import { Asset, Type } from '@prisma/client';
 import { Decimal } from '@prisma/client/runtime';
-import prismaMock from '../../prisma.mock';
+import prismaMock from '../prisma.mock';
 import OperationService from '../../../src/services/operation.service';
 
 describe('The OperationService getOperations function', () => {
   afterEach(() => jest.clearAllMocks());
 
-  it('should return the user assets', async () => {
+  it('should return the operations', async () => {
     const operationsMock = [
       {
         id: 1,

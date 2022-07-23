@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import AssetController from '../controllers/asset.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
-import ARoutes from './abs.routes';
+import Routes from './routes';
 
-export class AssetRoutes extends ARoutes {
+export class AssetRoutes extends Routes {
   public routes(): Router {
     this.router.get(
       '/assets/all',

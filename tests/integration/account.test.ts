@@ -143,7 +143,7 @@ describe('The POST /account/deposit route', () => {
 
     const newBalance = previousBalance.body.balance + 1000;
 
-    expect(result.statusCode).toBe(200);
+    expect(result.statusCode).toBe(201);
     expect(result.body.balance).toBeDefined();
     expect(result.body.balance).toBe(newBalance);
   });
@@ -262,7 +262,7 @@ describe('The POST /account/withdraw route', () => {
 
     const newBalance = previousBalance.body.balance - 100;
 
-    expect(result.statusCode).toBe(200);
+    expect(result.statusCode).toBe(201);
     expect(result.body.balance).toBeDefined();
     expect(result.body.balance).toBe(newBalance);
   });

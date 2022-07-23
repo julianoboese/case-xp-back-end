@@ -14,13 +14,13 @@ export default class AccountController {
     const { locals: { user: { id } } } = res;
     const newBalance: IBalance = await AccountService.deposit(id, req.body.amount);
 
-    res.status(200).json(newBalance);
+    res.status(201).json(newBalance);
   };
 
   public static withdraw = async (req: Request, res: Response): Promise<void> => {
     const { locals: { user: { id } } } = res;
     const newBalance: IBalance = await AccountService.withdraw(id, req.body.amount);
 
-    res.status(200).json(newBalance);
+    res.status(201).json(newBalance);
   };
 }

@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import prismaMock from '../../prisma.mock';
+import prismaMock from '../prisma.mock';
 import UserService from '../../../src/services/user.service';
 
 describe('The UserService getUser function', () => {

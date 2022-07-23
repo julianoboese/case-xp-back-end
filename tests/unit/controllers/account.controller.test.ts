@@ -65,7 +65,7 @@ describe('The AccountController deposit function', () => {
 
   afterEach(() => jest.clearAllMocks());
 
-  it('should respond with status code 200', async () => {
+  it('should respond with status code 201', async () => {
     await AccountController.deposit(
       requestMock as Request,
       responseMock as unknown as Response,
@@ -73,7 +73,7 @@ describe('The AccountController deposit function', () => {
 
     expect(responseMock.status).toHaveBeenCalled();
     expect(responseMock.status).toHaveBeenCalledTimes(1);
-    expect(responseMock.status).toHaveBeenCalledWith(200);
+    expect(responseMock.status).toHaveBeenCalledWith(201);
   });
 
   it('should respond with user new balance', async () => {
@@ -108,7 +108,7 @@ describe('The AccountController withdraw function', () => {
 
   afterEach(() => jest.clearAllMocks());
 
-  it('should respond with status code 200', async () => {
+  it('should respond with status code 201', async () => {
     await AccountController.withdraw(
       requestMock as Request,
       responseMock as unknown as Response,
@@ -116,7 +116,7 @@ describe('The AccountController withdraw function', () => {
 
     expect(responseMock.status).toHaveBeenCalled();
     expect(responseMock.status).toHaveBeenCalledTimes(1);
-    expect(responseMock.status).toHaveBeenCalledWith(200);
+    expect(responseMock.status).toHaveBeenCalledWith(201);
   });
 
   it('should respond with user new balance', async () => {

@@ -1,12 +1,12 @@
 import { Asset } from '@prisma/client';
-import prismaMock from '../../prisma.mock';
+import prismaMock from '../prisma.mock';
 import AssetService from '../../../src/services/asset.service';
 import AssetInfo from '../../../src/utils/asset.info';
 
 describe('The AssetService getAllAssets function', () => {
   afterEach(() => jest.clearAllMocks());
 
-  it('should return the user assets', async () => {
+  it('should return all the assets', async () => {
     const assetsMock = [
       {
         id: 1,
@@ -132,7 +132,7 @@ describe('The AssetService getAsset function', () => {
     expect(assets).toEqual(expectedReturn);
   });
 
-  it('should return the user asset if he has it', async () => {
+  it('should return the user asset if the user has it', async () => {
     const assetMock = {
       userId: 1,
       assetId: 1,

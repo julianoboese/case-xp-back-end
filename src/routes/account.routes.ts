@@ -2,9 +2,9 @@ import { Router } from 'express';
 import AccountController from '../controllers/account.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
 import accountValidator from '../validators/account.validator';
-import AValidatedRoutes from './abs.validated.routes';
+import ValidatedRoutes from './validated.routes';
 
-export class AccountRoutes extends AValidatedRoutes {
+export class AccountRoutes extends ValidatedRoutes {
   public routes(): Router {
     this.router.get(
       '/account',

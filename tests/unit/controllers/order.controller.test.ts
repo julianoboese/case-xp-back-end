@@ -23,7 +23,7 @@ describe('The OrderController buyAsset function', () => {
 
   afterEach(() => jest.clearAllMocks());
 
-  it('should respond with status code 200', async () => {
+  it('should respond with status code 201', async () => {
     await OrderController.buyAsset(
       requestMock as Request,
       responseMock as unknown as Response,
@@ -31,7 +31,7 @@ describe('The OrderController buyAsset function', () => {
 
     expect(responseMock.status).toHaveBeenCalled();
     expect(responseMock.status).toHaveBeenCalledTimes(1);
-    expect(responseMock.status).toHaveBeenCalledWith(200);
+    expect(responseMock.status).toHaveBeenCalledWith(201);
   });
 
   it('should respond with user asset position', async () => {
@@ -67,7 +67,7 @@ describe('The OrderController sellAsset function', () => {
 
   afterEach(() => jest.clearAllMocks());
 
-  it('should respond with status code 200', async () => {
+  it('should respond with status code 201', async () => {
     await OrderController.sellAsset(
       requestMock as Request,
       responseMock as unknown as Response,
@@ -75,7 +75,7 @@ describe('The OrderController sellAsset function', () => {
 
     expect(responseMock.status).toHaveBeenCalled();
     expect(responseMock.status).toHaveBeenCalledTimes(1);
-    expect(responseMock.status).toHaveBeenCalledWith(200);
+    expect(responseMock.status).toHaveBeenCalledWith(201);
   });
 
   it('should respond with user asset position', async () => {

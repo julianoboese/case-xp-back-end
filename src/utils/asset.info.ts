@@ -8,7 +8,7 @@ export default class AssetInfo {
     const assetData = await (await fetch(b3ApiUrl)).json();
 
     // Em ambientes que não sejam de produção, o preço e a variação dos ativos são "mockados"
-    if (assetData.results.error) {
+    if (assetData.results.error || assetData.error) {
       const randomPrice = +(Math.random() * 60).toFixed(2);
       const randomChange = +(Math.random() * 10 - 5).toFixed(2);
 

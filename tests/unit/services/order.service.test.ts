@@ -1,4 +1,4 @@
-import prismaMock from '../../prisma.mock';
+import prismaMock from '../prisma.mock';
 import OrderService from '../../../src/services/order.service';
 import AccountService from '../../../src/services/account.service';
 

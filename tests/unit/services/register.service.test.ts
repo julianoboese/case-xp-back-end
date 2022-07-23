@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { User } from '@prisma/client';
-import prismaMock from '../../prisma.mock';
+import prismaMock from '../prisma.mock';
 import RegisterService from '../../../src/services/register.service';
 import Jwt from '../../../src/utils/jwt';
 

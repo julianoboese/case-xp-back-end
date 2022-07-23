@@ -348,7 +348,7 @@ describe('The POST /order/buy route', () => {
     const newPosition = previousPosition.body.quantity + 100;
     const newBalance = previousBalance.body.balance - 100 * 23.52;
 
-    expect(result.statusCode).toBe(200);
+    expect(result.statusCode).toBe(201);
     expect(result.body.quantity).toBeDefined();
     expect(result.body.quantity).toBe(newPosition);
     expect(balanceResult.body.balance).toBe(newBalance);
@@ -680,7 +680,7 @@ describe('The POST /order/sell route', () => {
     const newPosition = previousPosition.body.quantity - 100;
     const newBalance = previousBalance.body.balance + 100 * 23.52;
 
-    expect(result.statusCode).toBe(200);
+    expect(result.statusCode).toBe(201);
     expect(result.body.quantity).toBeDefined();
     expect(result.body.quantity).toBe(newPosition);
     expect(balanceResult.body.balance).toBe(newBalance);

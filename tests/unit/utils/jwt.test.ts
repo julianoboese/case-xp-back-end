@@ -22,7 +22,7 @@ describe('The Jwt "authenticateToken" function', () => {
     );
   });
 
-  it('should return user data if token is verified', async () => {
+  it('should throw an error if token is not valid', async () => {
     jest.spyOn(jwt, 'verify').mockImplementation(() => {
       throw new Error();
     });

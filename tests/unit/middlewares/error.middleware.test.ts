@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorMiddleware from '../../../src/middlewares/error.middleware';
 import HttpError from '../../../src/utils/http.error';
 
-describe('The AuthMiddleware "auth" function', () => {
+describe('The ErrorMiddleware "handleError" function', () => {
   const requestMock = {};
   const responseMock = {
     status: jest.fn(),

@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
-import ARoutes from './abs.routes';
+import Routes from './routes';
 
-export class UserRoutes extends ARoutes {
+export class UserRoutes extends Routes {
   public routes(): Router {
     this.router.get(
       '/user',
